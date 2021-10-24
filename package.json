@@ -1,5 +1,5 @@
 {
-  "name": "openhab-jscripting-base",
+  "name": "openhab-jsscripting-base",
   "version": "0.9.0",
   "description": "This base library is for used for openHAB 3.0+ jsscripting, written in TypeScript. It contains several helpers and type definitions.",
   "main": "dist/index.js",
