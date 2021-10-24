@@ -1,6 +1,6 @@
 # Introduction
 
-The bibliothke is used together with openHAB 3.1. It is written in TypeScript and should help to write good rules.
+The library is used together with openHAB 3.1. It is written in TypeScript and should help to write good rules.
 
 ## Install
 
