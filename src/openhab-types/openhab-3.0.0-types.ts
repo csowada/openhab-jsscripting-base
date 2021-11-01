@@ -18,49 +18,49 @@ export const ItemStateEvent: org.openhab.core.items.events.ItemStateEvent = Java
 
 interface SimpleRuleStatic {
 
-	readonly class:any;
-	new(  ):org.openhab.core.automation.module.script.rulesupport.shared.simple.SimpleRule;
+  readonly class: any;
+  new(): org.openhab.core.automation.module.script.rulesupport.shared.simple.SimpleRule;
 }
 
 export const SimpleRule: SimpleRuleStatic = Java.type("org.openhab.core.automation.module.script.rulesupport.shared.simple.SimpleRule");
 
 interface ConfigurationStatic {
 
-    readonly class: any;
-    new(arg0: { [index: string]: any }): org.openhab.core.config.core.Configuration;
-    // new(arg0: java.util.Map<string, any /*java.lang.Object*/>): org.openhab.core.config.core.Configuration;
-    new(arg0: org.openhab.core.config.core.Configuration): org.openhab.core.config.core.Configuration;
-    new(): org.openhab.core.config.core.Configuration;
+  readonly class: any;
+  new(arg0: { [index: string]: any }): org.openhab.core.config.core.Configuration;
+  // new(arg0: java.util.Map<string, any /*java.lang.Object*/>): org.openhab.core.config.core.Configuration;
+  new(arg0: org.openhab.core.config.core.Configuration): org.openhab.core.config.core.Configuration;
+  new(): org.openhab.core.config.core.Configuration;
 }
 
 export const Configuration: ConfigurationStatic = Java.type("org.openhab.core.config.core.Configuration");
 
 interface TriggerBuilderStatic {
 
-	readonly class:any;
-	create<B,T>( arg0:org.openhab.core.automation.Module ):org.openhab.core.automation.util.ModuleBuilder<B, T>;
-	create( arg0:org.openhab.core.automation.Trigger ):org.openhab.core.automation.util.TriggerBuilder;
-	create(  ):org.openhab.core.automation.util.TriggerBuilder;
-	createAction( arg0:org.openhab.core.automation.Action ):org.openhab.core.automation.util.ActionBuilder;
-	createAction(  ):org.openhab.core.automation.util.ActionBuilder;
-	createCondition(  ):org.openhab.core.automation.util.ConditionBuilder;
-	createCondition( arg0:org.openhab.core.automation.Condition ):org.openhab.core.automation.util.ConditionBuilder;
-	createTrigger( arg0:org.openhab.core.automation.Trigger ):org.openhab.core.automation.util.TriggerBuilder;
-	createTrigger(  ):org.openhab.core.automation.util.TriggerBuilder;
+  readonly class: any;
+  create<B, T>(arg0: org.openhab.core.automation.Module): org.openhab.core.automation.util.ModuleBuilder<B, T>;
+  create(arg0: org.openhab.core.automation.Trigger): org.openhab.core.automation.util.TriggerBuilder;
+  create(): org.openhab.core.automation.util.TriggerBuilder;
+  createAction(arg0: org.openhab.core.automation.Action): org.openhab.core.automation.util.ActionBuilder;
+  createAction(): org.openhab.core.automation.util.ActionBuilder;
+  createCondition(): org.openhab.core.automation.util.ConditionBuilder;
+  createCondition(arg0: org.openhab.core.automation.Condition): org.openhab.core.automation.util.ConditionBuilder;
+  createTrigger(arg0: org.openhab.core.automation.Trigger): org.openhab.core.automation.util.TriggerBuilder;
+  createTrigger(): org.openhab.core.automation.util.TriggerBuilder;
 }
 
 export const TriggerBuilder: TriggerBuilderStatic = Java.type("org.openhab.core.automation.util.TriggerBuilder");
 
 interface ModuleBuilderStatic {
 
-	readonly class:any;
-	create<B,T>( arg0:org.openhab.core.automation.Module ):org.openhab.core.automation.util.ModuleBuilder<B, T>;
-	createAction( arg0:org.openhab.core.automation.Action ):org.openhab.core.automation.util.ActionBuilder;
-	createAction(  ):org.openhab.core.automation.util.ActionBuilder;
-	createCondition(  ):org.openhab.core.automation.util.ConditionBuilder;
-	createCondition( arg0:org.openhab.core.automation.Condition ):org.openhab.core.automation.util.ConditionBuilder;
-	createTrigger( arg0:org.openhab.core.automation.Trigger ):org.openhab.core.automation.util.TriggerBuilder;
-	createTrigger(  ):org.openhab.core.automation.util.TriggerBuilder;
+  readonly class: any;
+  create<B, T>(arg0: org.openhab.core.automation.Module): org.openhab.core.automation.util.ModuleBuilder<B, T>;
+  createAction(arg0: org.openhab.core.automation.Action): org.openhab.core.automation.util.ActionBuilder;
+  createAction(): org.openhab.core.automation.util.ActionBuilder;
+  createCondition(): org.openhab.core.automation.util.ConditionBuilder;
+  createCondition(arg0: org.openhab.core.automation.Condition): org.openhab.core.automation.util.ConditionBuilder;
+  createTrigger(arg0: org.openhab.core.automation.Trigger): org.openhab.core.automation.util.TriggerBuilder;
+  createTrigger(): org.openhab.core.automation.util.TriggerBuilder;
 }
 
 export const ModuleBuilder: ModuleBuilderStatic = Java.type("org.openhab.core.automation.util.ModuleBuilder");
@@ -68,32 +68,32 @@ export const ModuleBuilder: ModuleBuilderStatic = Java.type("org.openhab.core.au
 
 interface ActionBuilderStatic {
 
-	readonly class:any;
-	create<B,T>( arg0:org.openhab.core.automation.Module ):org.openhab.core.automation.util.ModuleBuilder<B, T>;
-	create( arg0:org.openhab.core.automation.Action ):org.openhab.core.automation.util.ActionBuilder;
-	create(  ):org.openhab.core.automation.util.ActionBuilder;
-	createAction( arg0:org.openhab.core.automation.Action ):org.openhab.core.automation.util.ActionBuilder;
-	createAction(  ):org.openhab.core.automation.util.ActionBuilder;
-	createCondition(  ):org.openhab.core.automation.util.ConditionBuilder;
-	createCondition( arg0:org.openhab.core.automation.Condition ):org.openhab.core.automation.util.ConditionBuilder;
-	createTrigger( arg0:org.openhab.core.automation.Trigger ):org.openhab.core.automation.util.TriggerBuilder;
-	createTrigger(  ):org.openhab.core.automation.util.TriggerBuilder;
+  readonly class: any;
+  create<B, T>(arg0: org.openhab.core.automation.Module): org.openhab.core.automation.util.ModuleBuilder<B, T>;
+  create(arg0: org.openhab.core.automation.Action): org.openhab.core.automation.util.ActionBuilder;
+  create(): org.openhab.core.automation.util.ActionBuilder;
+  createAction(arg0: org.openhab.core.automation.Action): org.openhab.core.automation.util.ActionBuilder;
+  createAction(): org.openhab.core.automation.util.ActionBuilder;
+  createCondition(): org.openhab.core.automation.util.ConditionBuilder;
+  createCondition(arg0: org.openhab.core.automation.Condition): org.openhab.core.automation.util.ConditionBuilder;
+  createTrigger(arg0: org.openhab.core.automation.Trigger): org.openhab.core.automation.util.TriggerBuilder;
+  createTrigger(): org.openhab.core.automation.util.TriggerBuilder;
 }
 
 export const ActionBuilder: ActionBuilderStatic = Java.type("org.openhab.core.automation.util.ActionBuilder");
 
 interface ConditionBuilderStatic {
 
-	readonly class:any;
-	create<B,T>( arg0:org.openhab.core.automation.Module ):org.openhab.core.automation.util.ModuleBuilder<B, T>;
-	create( arg0:org.openhab.core.automation.Condition ):org.openhab.core.automation.util.ConditionBuilder;
-	create(  ):org.openhab.core.automation.util.ConditionBuilder;
-	createAction( arg0:org.openhab.core.automation.Action ):org.openhab.core.automation.util.ActionBuilder;
-	createAction(  ):org.openhab.core.automation.util.ActionBuilder;
-	createCondition(  ):org.openhab.core.automation.util.ConditionBuilder;
-	createCondition( arg0:org.openhab.core.automation.Condition ):org.openhab.core.automation.util.ConditionBuilder;
-	createTrigger( arg0:org.openhab.core.automation.Trigger ):org.openhab.core.automation.util.TriggerBuilder;
-	createTrigger(  ):org.openhab.core.automation.util.TriggerBuilder;
+  readonly class: any;
+  create<B, T>(arg0: org.openhab.core.automation.Module): org.openhab.core.automation.util.ModuleBuilder<B, T>;
+  create(arg0: org.openhab.core.automation.Condition): org.openhab.core.automation.util.ConditionBuilder;
+  create(): org.openhab.core.automation.util.ConditionBuilder;
+  createAction(arg0: org.openhab.core.automation.Action): org.openhab.core.automation.util.ActionBuilder;
+  createAction(): org.openhab.core.automation.util.ActionBuilder;
+  createCondition(): org.openhab.core.automation.util.ConditionBuilder;
+  createCondition(arg0: org.openhab.core.automation.Condition): org.openhab.core.automation.util.ConditionBuilder;
+  createTrigger(arg0: org.openhab.core.automation.Trigger): org.openhab.core.automation.util.TriggerBuilder;
+  createTrigger(): org.openhab.core.automation.util.TriggerBuilder;
 }
 
 export const ConditionBuilder: ConditionBuilderStatic = Java.type("org.openhab.core.automation.util.ConditionBuilder");

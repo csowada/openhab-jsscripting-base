@@ -8,26 +8,25 @@ import { Configuration, ModuleBuilder } from "./openhab-types";
  */
 export const createTrigger = ({ typeString, name, config }: { typeString: string; name?: string; config: { [index: string]: any; }; }) => {
 
-    if (typeof name === "undefined" || name === null) {
-        const uuid: string = (<any>Java.type("java.util.UUID")).randomUUID().toString();
-        name = uuid;
-    }
+  if (typeof name === "undefined" || name === null) {
+    const uuid: string = Java.type<any>("java.util.UUID").randomUUID().toString();
+    name = uuid;
+  }
 
-    var trigger = ModuleBuilder.createTrigger()
-        .withId(name)
-        .withTypeUID(typeString)
-        .withConfiguration(new Configuration(config))
-        .build();
-
-    return trigger;
+  return ModuleBuilder.createTrigger()
+    .withId(name)
+    .withTypeUID(typeString)
+    .withConfiguration(new Configuration(config))
+    .build();
 }
+
 // export const ChannelEventTrigger = (channel: string, event: string, triggerName: string) => createTrigger("core.ChannelEventTrigger", triggerName, {
-export const ChannelEventTrigger = ({channelUID, event, triggerName}: {channelUID: string, event?: string, triggerName?: string}) => createTrigger({
-        typeString: "core.ChannelEventTrigger", name: triggerName, config: {
-            channelUID,
-            event
-        }
-    })
+export const ChannelEventTrigger = ({ channelUID, event, triggerName }: { channelUID: string, event?: string, triggerName?: string }) => createTrigger({
+  typeString: "core.ChannelEventTrigger", name: triggerName, config: {
+    channelUID,
+    event
+  }
+})
 
 // /**
 //  * Creates a trigger that fires upon an item changing state.
@@ -61,13 +60,13 @@ export const ChannelEventTrigger = ({channelUID, event, triggerName}: {channelUI
  * @param {String} [newState] the new state of the item
  * @param {String} [triggerName] the name of the trigger to create
  */
-export const ItemStateChangeTrigger = ({itemName, state, oldState, triggerName}: {itemName: string, oldState?: org.openhab.core.types.State, state?: org.openhab.core.types.State, triggerName?: string}) => createTrigger({
-        typeString: "core.ItemStateChangeTrigger", name: triggerName, config: {
-            itemName,
-            "state": state?.toFullString(),
-            "oldState": oldState?.toFullString()
-        }
-    })
+export const ItemStateChangeTrigger = ({ itemName, state, oldState, triggerName }: { itemName: string, oldState?: org.openhab.core.types.State, state?: org.openhab.core.types.State, triggerName?: string }) => createTrigger({
+  typeString: "core.ItemStateChangeTrigger", name: triggerName, config: {
+    itemName,
+    "state": state?.toFullString(),
+    "oldState": oldState?.toFullString()
+  }
+})
 
 /**
  * Creates a trigger that fires upon an item receiving a state update. Note that the item does not need to change state.
@@ -82,11 +81,11 @@ export const ItemStateChangeTrigger = ({itemName, state, oldState, triggerName}:
  * @param {String} [triggerName] the name of the trigger to create
  */
 export const ItemStateUpdateTrigger = (itemName: string, state?: org.openhab.core.types.State, triggerName?: string) => createTrigger({
-        typeString: "core.ItemStateUpdateTrigger", name: triggerName, config: {
-            "itemName": itemName,
-            "state": state?.toFullString()
-        }
-    })
+  typeString: "core.ItemStateUpdateTrigger", name: triggerName, config: {
+    "itemName": itemName,
+    "state": state?.toFullString()
+  }
+})
 
 /**
  * Creates a trigger that fires upon an item receiving a command. Note that the item does not need to change state.
@@ -101,11 +100,11 @@ export const ItemStateUpdateTrigger = (itemName: string, state?: org.openhab.cor
  * @param {String} [triggerName] the name of the trigger to create
  */
 export const ItemCommandTrigger = (itemName: string, command?: org.openhab.core.types.Command, triggerName?: string) => createTrigger({
-        typeString: "core.ItemCommandTrigger", name: triggerName, config: {
-            "itemName": itemName,
-            "command": command?.toFullString()
-        }
-    })
+  typeString: "core.ItemCommandTrigger", name: triggerName, config: {
+    "itemName": itemName,
+    "command": command?.toFullString()
+  }
+})
 
 /**
  * Creates a trigger that fires on a cron schedule. The supplied cron expression defines when the trigger will fire.
@@ -118,10 +117,10 @@ export const ItemCommandTrigger = (itemName: string, command?: org.openhab.core.
  * @param {String} expression the cron expression defining the triggering schedule
  */
 export const GenericCronTrigger = (expression: string, triggerName?: string) => createTrigger({
-        typeString: "timer.GenericCronTrigger", name: triggerName, config: {
-            "cronExpression": expression
-        }
-    })
+  typeString: "timer.GenericCronTrigger", name: triggerName, config: {
+    "cronExpression": expression
+  }
+})
 
 /**
  * Creates a trigger that fires daily at a specific time. The supplied time defines when the trigger will fire.
@@ -134,7 +133,7 @@ export const GenericCronTrigger = (expression: string, triggerName?: string) => 
  * @param {String} time the time expression defining the triggering schedule
  */
 export const TimeOfDayTrigger = (time: string, triggerName?: string) => createTrigger({
-        typeString: "timer.TimeOfDayTrigger", name: triggerName, config: {
-            "time": time
-        }
-    })
+  typeString: "timer.TimeOfDayTrigger", name: triggerName, config: {
+    "time": time
+  }
+})

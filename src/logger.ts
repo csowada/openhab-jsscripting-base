@@ -8,5 +8,5 @@ const LoggerFactory: any = Java.type("org.slf4j.LoggerFactory");
  * @returns 
  */
 export const getLogger = (filename: string) => {
-    return LoggerFactory.getLogger("scripting." + filename) as org.slf4j.Logger;
+  return LoggerFactory.getLogger("scripting." + filename) as org.slf4j.Logger;
 };

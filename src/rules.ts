@@ -90,9 +90,7 @@ export const createRule = (params: ExecuteFnType): org.openhab.core.automation.m
   }
 
   if (typeof params.autoAdd === 'undefined' || params.autoAdd === true) {
-
     automationManager.addRule(rule);
-    // automationManager.removeHandler
   }
 
   return rule;

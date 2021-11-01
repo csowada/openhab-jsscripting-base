@@ -5,11 +5,6 @@ import { DateTimeType, DecimalType, UnDefType } from "./openhab-types";
 
 export const events: org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent = runtime.events;
 export const itemRegistry: org.openhab.core.items.ItemRegistry = runtime.itemRegistry;
-
-import xxx from "@runtime/events";
-
-// export const itemRegistry from "@runtime" as ;
-
 export const ir = itemRegistry;
 
 type ItemNameOrItem = string | org.openhab.core.items.Item;
@@ -18,39 +13,12 @@ type CallbackSpreadArray<T> = (...states: T[]) => void;
 
 const logger = getLogger("items.ts");
 
-console.error("xxxxx", xxx);
-
-// export const getItemState = <T>(itemName: string, type: T, callback?: (value: T) => void): T | null => {
-
-//   const item = ir.getItem(itemName);
-//   if (item) {
-//     const state = item.getStateAs(type);
-
-//     if (state && callback) {
-//       callback(state);
-//     }
-
-//     return state;
-//   }
-
-//   return null;
-// }
-
-// export const getNumberState = (itemName: string, callback?: (value: org.openhab.core.library.types.DecimalType) => void): org.openhab.core.library.types.DecimalType | null => {
-//   return getItemState(itemName, DecimalType, callback);
-// }
-
-// export const getStates = (...itemNames: string[], callback?: (value: org.openhab.core.library.types.DecimalType)) => {
-
-// };
-
 export const postUpdate = (item: ItemNameOrItem, arg1: org.openhab.core.types.State | number | string): any | null => {
   const itm = getItem(item);
   if (itm) {
 
     // Fix Issue: Error:  TypeError: invokeMember (postUpdate) on org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent@5de018ac failed due to: Multiple applicable overloads found for method name 
     if (arg1 instanceof DecimalType) {
-      // return (<any>events)["postUpdate(org.openhab.core.items.Item, org.openhab.core.types.State)"](itm, arg1);  works since v21.0
       return events.postUpdate(itm, arg1.toFullString());
     } else {
       return events.postUpdate(itm, arg1);

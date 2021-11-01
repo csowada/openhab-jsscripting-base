@@ -1,7 +1,7 @@
-import { ZonedDateTime } from "./openhab-types";
 import javascriptUtils from "@runtime/JavaScriptUtils";
+import { ZonedDateTime } from "./openhab-types";
+
 const timerFactory: any = javascriptUtils.timerFactory;
-// const timerFactory: any = require('@runtime/JavaScriptUtils').timerFactory;
 
 export interface Timer {
 
@@ -42,6 +42,12 @@ const createTimerSeconds = (seconds: number, fn: () => void): Timer => {
   return timerFactory.createTimer(ZonedDateTime.now().plusSeconds(seconds), fn);
 }
 
+/**
+ * 
+ * @param millis 
+ * @param fn 
+ * @returns 
+ */
 const createTimerMillis = (millis: number, fn: () => void): Timer => {
   return timerFactory.createTimer(ZonedDateTime.now().plusNanos(millis * 1000000), fn);
 }
