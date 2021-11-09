@@ -48,6 +48,34 @@ export const ChannelEventTrigger = ({ channelUID, event, triggerName }: { channe
 // })
 
 /**
+ * Creates a trigger that fires upon a item changing state within a group.
+ * 
+ * @param param0 
+ * @returns 
+ */
+ export const GroupStateChangeTrigger = ({ groupName, state, previousState, triggerName }: { groupName: string, state?: org.openhab.core.types.State, previousState?: org.openhab.core.types.State, triggerName?: string  }) => createTrigger({
+  typeString: "core.GroupStateChangeTrigger", name: triggerName, config: {
+    groupName,
+    "state": state?.toFullString(),
+    "previousState": previousState?.toFullString()
+  }
+});
+
+/**
+ * Creates a trigger that fires upon an item receiving a state update within a group. Note that the item does not need to change state.
+ * 
+ * @param param0 
+ * @returns 
+ */
+ export const GroupStateUpdateTrigger = ({ groupName, state, previousState, triggerName }: { groupName: string, state?: org.openhab.core.types.State, previousState?: org.openhab.core.types.State, triggerName?: string  }) => createTrigger({
+  typeString: "core.GroupStateUpdateTrigger", name: triggerName, config: {
+    groupName,
+    "state": state?.toFullString(),
+    "previousState": previousState?.toFullString()
+  }
+});
+
+/**
  * Creates a trigger that fires upon an item changing state.
  * 
  * @example
@@ -80,10 +108,11 @@ export const ItemStateChangeTrigger = ({ itemName, state, oldState, triggerName 
  * @param {String} [state] the new state of the item
  * @param {String} [triggerName] the name of the trigger to create
  */
-export const ItemStateUpdateTrigger = (itemName: string, state?: org.openhab.core.types.State, triggerName?: string) => createTrigger({
+export const ItemStateUpdateTrigger = ({ itemName, state, oldState, triggerName }: { itemName: string, oldState?: org.openhab.core.types.State, state?: org.openhab.core.types.State, triggerName?: string }) => createTrigger({
   typeString: "core.ItemStateUpdateTrigger", name: triggerName, config: {
-    "itemName": itemName,
-    "state": state?.toFullString()
+    itemName,
+    "state": state?.toFullString(),
+    "oldState": oldState?.toFullString()
   }
 })
 
