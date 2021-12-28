@@ -1,3 +1,5 @@
+/// <reference path="../@types/index.d.ts" />
+
 export * from "./actions";
 export * from "./items"
 export * from "./java-utils"
@@ -9,3 +11,5 @@ export * from "./events"
 export * from "./things"
 export * from "./openhab-types"
 export * from "./persistance"
+export * as cache from "./cache"
+export * as timers from "./timers2"
