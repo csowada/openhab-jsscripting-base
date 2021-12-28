@@ -1,11 +1,7 @@
-import runtime from "@runtime";
+import { events, ir} from "@runtime";
 import { fromSet } from "./java-utils";
 import { getLogger } from "./logger";
 import { DateTimeType, DecimalType, UnDefType } from "./openhab-types";
-
-export const events: org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent = runtime.events;
-export const itemRegistry: org.openhab.core.items.ItemRegistry = runtime.itemRegistry;
-export const ir = itemRegistry;
 
 type ItemNameOrItem = string | org.openhab.core.items.Item;
 type ReturnItemsMap<T extends string> = {[K in T]: org.openhab.core.items.Item | null};

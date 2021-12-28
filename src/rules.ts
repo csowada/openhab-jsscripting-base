@@ -1,18 +1,11 @@
+import { automationManager } from "@runtime/RuleSupport";
+
 import { newState, xpreviousState, receivedCommand, triggeringItemName } from './events';
 import { toSet } from './java-utils';
 import { getLogger } from './logger';
 import { SimpleRule } from './openhab-types';
 
-import ruleSupport from "@runtime/RuleSupport";
-
 const logger = getLogger("libs/rules.ts");
-
-const automationManager: org.openhab.core.automation.module.script.rulesupport.shared.ScriptedAutomationManager = ruleSupport.automationManager;
-// const automationManager: org.openhab.core.automation.module.script.rulesupport.shared.ScriptedAutomationManager = require('@runtime/RuleSupport').automationManager;
-// const ThreadsafeWrappingScriptedAutomationManagerDelegate: any = Java.type("org.openhab.automation.jsscripting.internal.threading.ThreadsafeWrappingScriptedAutomationManagerDelegate");
-// const automationManager = new ThreadsafeWrappingScriptedAutomationManagerDelegate(automationManager2) as org.openhab.core.automation.module.script.rulesupport.shared.ScriptedAutomationManager;
-
-// console.log("-------------->", automationManager.toString());
 
 type ExecuteType = (action: org.openhab.core.automation.Action, input: { [index: string]: any }) => void;
 type ExecuteTypeExt = (action: org.openhab.core.automation.Action, input: { [index: string]: any },

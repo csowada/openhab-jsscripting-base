@@ -1,4 +1,4 @@
-/// <reference path="../@types/index.d.ts" />
+//// <reference path="../@types/index.d.ts" />
 
 const LoggerFactory: any = Java.type("org.slf4j.LoggerFactory");
 
