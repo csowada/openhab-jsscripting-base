@@ -1,6 +1,7 @@
 import { automationManager } from "@runtime/RuleSupport";
+import { ItemStateChangedEvent, ItemStateEvent, GroupItemStateChangedEvent, ItemCommandEvent } from "./openhab-types";
 
-import { newState, xpreviousState, receivedCommand, triggeringItemName } from './events';
+// import { extractNewState, extractPreviousState, extractReceivedCommand, extractTriggeringItemName } from './events';
 import { toSet } from './java-utils';
 import { getLogger } from './logger';
 import { SimpleRule } from './openhab-types';
@@ -49,10 +50,10 @@ export const createRule = (params: ExecuteFnType): org.openhab.core.automation.m
   const execute: ExecuteType = (action, input) => {
     try {
       params.execute(action, input, {
-        receivedCommand: receivedCommand(input),
-        newState: newState(input),
-        previousState: xpreviousState(input),
-        triggeringItemName: triggeringItemName(input)
+        receivedCommand: extractReceivedCommand(input),
+        newState: extractNewState(input),
+        previousState: extractPreviousState(input),
+        triggeringItemName: extractTriggeringItemName(input)
       });
     } catch (e: any) {
       console.error("------------------------------------------")
@@ -60,6 +61,7 @@ export const createRule = (params: ExecuteFnType): org.openhab.core.automation.m
       console.error("------------------------------------------")
       logger.error("------------------------------------------")
       logger.error("# Error: See console for more details");
+      logger.error(`# Failed to execute rule ${e}: ${e.stack}`);
       logger.error("------------------------------------------")
     }
   }
@@ -88,3 +90,61 @@ export const createRule = (params: ExecuteFnType): org.openhab.core.automation.m
 
   return rule;
 }
+
+const callTypEquals = <T, U>(input: { [index: string]: any }, classType: T, cb: (instance: T) => U): U | undefined => {
+  const event = input?.get("event");
+  if (event && event.class === classType) {
+    return cb(event);
+  }
+  return undefined;
+}
+
+const extractTriggeringItemName = (input: { [index: string]: any }) => {
+
+  let result = callTypEquals(input, ItemStateChangedEvent, (y) => y.getItemName());
+  if (result) return result;
+
+  result = callTypEquals(input, ItemStateEvent, (y) => y.getItemName());
+  if (result) return result;
+
+  result = callTypEquals(input, GroupItemStateChangedEvent, (y) => y.getItemName());
+  if (result) return result;
+
+  result = callTypEquals(input, ItemCommandEvent, (y) => y.getItemName());
+  if (result) return result;
+
+  return undefined;
+}
+
+const extractNewState = (input: { [index: string]: any }) => {
+
+  let result = callTypEquals(input, ItemStateChangedEvent, (y) => y.getItemState());
+  if (result) return result;
+
+  result = callTypEquals(input, ItemStateEvent, (y) => y.getItemState());
+  if (result) return result;
+
+  result = callTypEquals(input, GroupItemStateChangedEvent, (y) => y.getItemState());
+  if (result) return result;
+
+  return undefined;
+}
+
+const extractReceivedCommand = (input: { [index: string]: any }) => {
+
+  let result = callTypEquals(input, ItemCommandEvent, (y) => y.getItemCommand());
+  if (result) return result;
+
+  return undefined;
+}
+
+const extractPreviousState = (input: { [index: string]: any }) => {
+  let result = callTypEquals(input, ItemStateChangedEvent, (y) => y.getOldItemState());
+  if (result) return result;
+
+  result = callTypEquals(input, GroupItemStateChangedEvent, (y) => y.getOldItemState());
+  if (result) return result;
+
+  return undefined;
+}
+
