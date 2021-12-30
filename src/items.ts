@@ -9,15 +9,36 @@ type CallbackSpreadArray<T> = (...states: T[]) => void;
 
 const logger = getLogger("items.ts");
 
-export const postUpdate = (item: ItemNameOrItem, arg1: org.openhab.core.types.State | number | string): any | null => {
+/**
+ * Provides a proxy object to load a item via a property like 
+ * 
+ *  ```const item = allItems.KitchenLight```
+ */
+export const allItems = new Proxy<any>({}, {
+  get: function (target, name, receiver): org.openhab.core.items.Item | null {
+      if (typeof name === 'string' && !/^-?\d+$/.test(name)) {
+          return ir.getItem(name);
+      }
+
+      throw Error("unsupported function call: " + name.toString());
+  }
+}) as {[key: string]: org.openhab.core.items.Item}; // overwrite to make Typescript happy
+
+/**
+ * 
+ * @param item 
+ * @param value 
+ * @returns 
+ */
+export const postUpdate = (item: ItemNameOrItem, value: org.openhab.core.types.State | number | string): any | null => {
   const itm = getItem(item);
   if (itm) {
 
     // Fix Issue: Error:  TypeError: invokeMember (postUpdate) on org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent@5de018ac failed due to: Multiple applicable overloads found for method name 
-    if (arg1 instanceof DecimalType) {
-      return events.postUpdate(itm, arg1.toFullString());
+    if (value instanceof DecimalType) {
+      return events.postUpdate(itm, value.toFullString());
     } else {
-      return events.postUpdate(itm, arg1);
+      return events.postUpdate(itm, value);
     }
     
   } else {
@@ -27,10 +48,10 @@ export const postUpdate = (item: ItemNameOrItem, arg1: org.openhab.core.types.St
   return null;
 }
 
-export const sendCommand = (item: ItemNameOrItem, arg1: org.openhab.core.types.State | number | string): any | null => {
+export const sendCommand = (item: ItemNameOrItem, value: org.openhab.core.types.State | number | string): any | null => {
   const itm = getItem(item);
   if (itm) {
-    return events.sendCommand(itm, arg1);
+    return events.sendCommand(itm, value);
   } else {
     logger.warn("sendCommand() failed, item \"{}\" not found!", item)
   }

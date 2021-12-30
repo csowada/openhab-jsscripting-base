@@ -39,17 +39,6 @@ const getThingUID = (thingAction: any) => {
   return thing.getUID();
 }
 
-// const actionServices = ScriptServiceUtil.getActionServices();
-// if (actionServices != null) {
-//   for (var actionService in actionServices) {
-//     var cn = actionServices[actionService].getActionClassName();
-//     var className = cn.substring(cn.lastIndexOf(".") + 1);
-//     logger.info("-->" + cn + "-->" + className);
-//     // actions[className] = services[actionService];
-//     // actionList[actionService] = className;
-//   }
-// }
-
 /**
  * Returns a scoped thing action
  * @param scope Scope like ``mail``
