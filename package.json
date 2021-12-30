@@ -5,13 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc --build --clean && tsc",
-    "watch": "tsc -w"
+    "build": "tsc",
+    "watch3": "tsc -w"
   },
   "author": "Christian Sowada <openhab@cs-dev.de> (https://github.com/csowada)",
   "license": "EPL-2.0",
-  "repository": "github:csowada/openhab-jscripting-base",
-  "devDependencies": {
-    "typescript": "^4.5.4"
-  }
+  "repository": "github:csowada/openhab-jscripting-base"
 }
