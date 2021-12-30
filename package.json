@@ -1,14 +1,17 @@
 {
   "name": "openhab-jsscripting-base",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "This base library is for used for openHAB 3.0+ jsscripting, written in TypeScript. It contains several helpers and type definitions.",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "watch3": "tsc -w"
+    "build": "tsc --build --clean && tsc",
+    "watch": "tsc -w"
   },
   "author": "Christian Sowada <openhab@cs-dev.de> (https://github.com/csowada)",
   "license": "EPL-2.0",
-  "repository": "github:csowada/openhab-jscripting-base"
+  "repository": "github:csowada/openhab-jscripting-base",
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
 }
