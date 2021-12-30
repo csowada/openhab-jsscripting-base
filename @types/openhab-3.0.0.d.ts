@@ -1,10 +1,5 @@
 /// <reference path="openhab-3.0.0-gen.d.ts"/>
 
-declare namespace Java {
-  export function extend<T>(clazz: any, methods?: {}): T;
-  export function typeName<T>(x: T): string;
-}
-
 declare namespace org.openhab.core.events {
 
   interface Event {
@@ -129,9 +124,36 @@ declare namespace org.openhab.core.items {
     getCommandDescription(): org.openhab.core.types.CommandDescription;
     getCommandDescription(arg0: java.util.Locale): org.openhab.core.types.CommandDescription;
     getGroupNames(): java.util.List<string>;
-    getLabel(): string;
+
+    /**
+     * Returns the label of the item or null if no label is set.
+     */
+    getLabel(): string | null;
+
+    /**
+     * Returns the label of the item or null if no label is set.
+     */
+    label: string | null
+
+    /**
+     * returns the name of the item
+     */
     getName(): string;
+
+    /**
+     * returns the name of the item
+     */
+    name: string
+
+    /**
+     * returns the current state of the item
+     */
     getState(): org.openhab.core.types.State;
+
+    /**
+     * returns the current state of the item
+     */
+    state: org.openhab.core.types.State;
     getStateAs<T>(arg0: T): T;
     getStateDescription(): org.openhab.core.types.StateDescription;
     getStateDescription(arg0: java.util.Locale): org.openhab.core.types.StateDescription;
@@ -165,10 +187,13 @@ declare namespace org.openhab.core.items {
     getFunction(): any /*org.openhab.core.items.GroupFunction*/;
     getGroupNames(): java.util.List<string>;
     getLabel(): string;
+    label: string
     getMembers(): java.util.Set<org.openhab.core.items.Item>;
-    getMembers(arg0: Predicate<org.openhab.core.items.Item>): java.util.Set<org.openhab.core.items.Item>;
+    getMembers(arg0: java.util.funktion.Predicate<org.openhab.core.items.Item>): java.util.Set<org.openhab.core.items.Item>;
     getName(): string;
+    name: string
     getState(): org.openhab.core.types.State;
+    state: org.openhab.core.types.State;
     getStateAs<T>(arg0: java.lang.Class<T>): T;
     getStateDescription(): org.openhab.core.types.StateDescription;
     getStateDescription(arg0: java.util.Locale): org.openhab.core.types.StateDescription;
