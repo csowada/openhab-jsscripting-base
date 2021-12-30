@@ -9,6 +9,41 @@
 
 declare namespace org.openhab.core.types {
 
+  interface CommandDescriptionProvider {
+
+    getCommandDescription(arg0: string, arg1: java.util.Locale): CommandDescription;
+
+  } // end CommandDescriptionProvider
+
+  interface Type {
+
+    format(arg0: string): string;
+    toFullString(): string;
+
+  } // end Type
+
+  class EventOption/* extends java.lang.Object*/ {
+
+    equals(arg0: any /*java.lang.Object*/): boolean;
+    getLabel(): string;
+    getValue(): string;
+    toString(): string;
+
+  } // end EventOption
+
+  class StateDescription/* extends java.lang.Object*/ {
+
+    equals(arg0: any /*java.lang.Object*/): boolean;
+    getMaximum(): java.math.BigDecimal;
+    getMinimum(): java.math.BigDecimal;
+    getOptions(): java.util.List<StateOption>;
+    getPattern(): string;
+    getStep(): java.math.BigDecimal;
+    isReadOnly(): boolean;
+    toString(): string;
+
+  } // end StateDescription
+
   class EventDescription/* extends java.lang.Object*/ {
 
     equals(arg0: any /*java.lang.Object*/): boolean;
@@ -16,9 +51,6 @@ declare namespace org.openhab.core.types {
     toString(): string;
 
   } // end EventDescription
-
-} // end namespace org.openhab.core.types
-declare namespace org.openhab.core.types {
 
   interface StateDescriptionFragment {
 
@@ -32,20 +64,12 @@ declare namespace org.openhab.core.types {
 
   } // end StateDescriptionFragment
 
-} // end namespace org.openhab.core.types
-
-declare namespace org.openhab.core.types {
-
-  interface Command/* extends Type*/ {
+  interface Command extends Type {
 
     format(arg0: string): string;
     toFullString(): string;
 
   } // end Command
-
-} // end namespace org.openhab.core.types
-
-declare namespace org.openhab.core.types {
 
   class CommandOption/* extends java.lang.Object*/ {
 
@@ -89,46 +113,6 @@ declare namespace org.openhab.core.config.core {
   } // end ConfigDescriptionParameter
 
 } // end namespace org.openhab.core.config.core
-declare namespace org.openhab.core.types {
-
-  interface Type {
-
-    format(arg0: string): string;
-    toFullString(): string;
-
-  } // end Type
-
-} // end namespace org.openhab.core.types
-declare namespace org.openhab.core.types {
-
-  class EventOption/* extends java.lang.Object*/ {
-
-    equals(arg0: any /*java.lang.Object*/): boolean;
-    getLabel(): string;
-    getValue(): string;
-    toString(): string;
-
-  } // end EventOption
-
-} // end namespace org.openhab.core.types
-
-declare namespace org.openhab.core.types {
-
-  class StateDescription/* extends java.lang.Object*/ {
-
-    equals(arg0: any /*java.lang.Object*/): boolean;
-    getMaximum(): java.math.BigDecimal;
-    getMinimum(): java.math.BigDecimal;
-    getOptions(): java.util.List<StateOption>;
-    getPattern(): string;
-    getStep(): java.math.BigDecimal;
-    isReadOnly(): boolean;
-    toString(): string;
-
-  } // end StateDescription
-
-} // end namespace org.openhab.core.types
-
 
 declare namespace org.openhab.core.items {
 
@@ -177,9 +161,6 @@ declare namespace org.openhab.core.items {
 
   } // end GenericItem
 
-} // end namespace org.openhab.core.items
-declare namespace org.openhab.core.items {
-
   interface StateChangeListener {
 
     stateChanged(arg0: any /*org.openhab.core.items.Item*/, arg1: any /*org.openhab.core.types.State*/, arg2: any /*org.openhab.core.types.State*/): void;
@@ -188,16 +169,6 @@ declare namespace org.openhab.core.items {
   } // end StateChangeListener
 
 } // end namespace org.openhab.core.items
-
-declare namespace org.openhab.core.types {
-
-  interface CommandDescriptionProvider {
-
-    getCommandDescription(arg0: string, arg1: java.util.Locale): CommandDescription;
-
-  } // end CommandDescriptionProvider
-
-} // end namespace org.openhab.core.types
 
 declare namespace org.openhab.core.automation {
 
@@ -211,10 +182,6 @@ declare namespace org.openhab.core.automation {
 
   } // end Trigger
 
-} // end namespace org.openhab.core.automation
-
-declare namespace org.openhab.core.automation {
-
   interface Action/* extends Module*/ {
 
     getConfiguration(): any /*org.openhab.core.config.core.Configuration*/;
@@ -225,9 +192,6 @@ declare namespace org.openhab.core.automation {
     getTypeUID(): string;
 
   } // end Action
-
-} // end namespace org.openhab.core.automation
-declare namespace org.openhab.core.automation {
 
   interface RuleManager {
 
@@ -307,10 +271,6 @@ declare namespace org.openhab.core.types {
 
   } // end PrimitiveType
 
-} // end namespace org.openhab.core.types
-
-declare namespace org.openhab.core.types {
-
   interface ComplexType/* extends Type*/ {
 
     format(arg0: string): string;
@@ -366,10 +326,6 @@ declare namespace org.openhab.core.automation {
 
   } // end Condition
 
-} // end namespace org.openhab.core.automation
-
-declare namespace org.openhab.core.automation {
-
 /* enum */class Visibility/* extends java.lang.Enum<any>*/ {
 
     // VISIBLE:Visibility;
@@ -398,10 +354,6 @@ declare namespace org.openhab.core.types {
     toString(): string;
 
   } // end TypeParser
-
-} // end namespace org.openhab.core.types
-
-declare namespace org.openhab.core.types {
 
   class StateOption/* extends java.lang.Object*/ {
 

@@ -77,25 +77,6 @@ declare namespace org.openhab.core.items.events {
 
 } // end namespace org.openhab.core.items.events
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 declare namespace org.openhab.core.automation.module.script.internal.defaultscope {
 
   class ScriptBusEvent/* extends java.lang.Object*/ {
@@ -391,6 +372,16 @@ declare namespace org.openhab.core.types {
 
   } // end RefreshType
 
+  interface RefreshTypeStatic {
+
+    REFRESH: org.openhab.core.types.RefreshType;
+  
+    readonly class: org.openhab.core.types.RefreshType;
+    valueOf(arg0: string): org.openhab.core.types.RefreshType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    values(): [org.openhab.core.types.RefreshType];
+  }
+
 /* enum */class UnDefType/* extends java.lang.Enum<any> implements PrimitiveType, State*/ {
 
     // UNDEF:UnDefType;
@@ -407,7 +398,21 @@ declare namespace org.openhab.core.types {
     toString(): string;
 
   } // end UnDefType
+
+  interface UnDefTypeStatic {
+
+    UNDEF: org.openhab.core.types.UnDefType;
+    NULL: org.openhab.core.types.UnDefType;
+
+    readonly class: org.openhab.core.types.UnDefType;
+    valueOf(arg0: string): org.openhab.core.types.UnDefType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    values(): [org.openhab.core.types.UnDefType];
+  }
+
 } // end namespace org.openhab.core.types
+
+
 
 declare namespace org.openhab.core.library.types {
 
@@ -428,6 +433,17 @@ declare namespace org.openhab.core.library.types {
 
   } // end UpDownType
 
+  interface UpDownTypeStatic {
+
+    UP: org.openhab.core.library.types.UpDownType;
+    DOWN: org.openhab.core.library.types.UpDownType;
+
+    readonly class: org.openhab.core.library.types.UpDownType;
+    valueOf(arg0: string): org.openhab.core.library.types.UpDownType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    values(): [org.openhab.core.library.types.UpDownType];
+  }
+
   class PointType/* extends java.lang.Object implements org.openhab.core.types.ComplexType, org.openhab.core.types.Command, org.openhab.core.types.State*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -445,6 +461,17 @@ declare namespace org.openhab.core.library.types {
 
   } // end PointType
 
+  interface PointTypeStatic {
+
+    readonly class: org.openhab.core.library.types.PointType;
+    new(arg0: org.openhab.core.library.types.StringType, arg1: org.openhab.core.library.types.StringType, arg2: org.openhab.core.library.types.StringType): org.openhab.core.library.types.PointType;
+    new(arg0: string): org.openhab.core.library.types.PointType;
+    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.DecimalType, arg2: org.openhab.core.library.types.DecimalType): org.openhab.core.library.types.PointType;
+    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.DecimalType): org.openhab.core.library.types.PointType;
+    new(): org.openhab.core.library.types.PointType;
+    new(arg0: org.openhab.core.library.types.StringType, arg1: org.openhab.core.library.types.StringType): org.openhab.core.library.types.PointType;
+    valueOf(arg0: string): org.openhab.core.library.types.PointType;
+  }
 
   class PercentType/* extends DecimalType*/ {
 
@@ -464,6 +491,17 @@ declare namespace org.openhab.core.library.types {
 
   } // end PercentType
 
+  interface PercentTypeStatic {
+
+    readonly class: org.openhab.core.library.types.PercentType;
+    new(arg0: string): org.openhab.core.library.types.PercentType;
+    new(arg0: int): org.openhab.core.library.types.PercentType;
+    new(): org.openhab.core.library.types.PercentType;
+    new(arg0: java.math.BigDecimal): org.openhab.core.library.types.PercentType;
+    valueOf(arg0: string): org.openhab.core.library.types.PercentType;
+    valueOf(arg0: string): org.openhab.core.library.types.DecimalType;
+  }
+
   class StringListType/* extends java.lang.Object implements org.openhab.core.types.Command, org.openhab.core.types.State*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -475,8 +513,18 @@ declare namespace org.openhab.core.library.types {
 
   } // end StringListType
 
+  interface StringListTypeStatic {
 
-        /* enum */class NextPreviousType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
+    readonly class: org.openhab.core.library.types.StringListType;
+    new(arg0: string): org.openhab.core.library.types.StringListType;
+    new(...arg0: string[]): org.openhab.core.library.types.StringListType;
+    new(...arg0: org.openhab.core.library.types.StringType[]): org.openhab.core.library.types.StringListType;
+    new(arg0: java.util.List<string>): org.openhab.core.library.types.StringListType;
+    new(): org.openhab.core.library.types.StringListType;
+    valueOf(arg0: string): org.openhab.core.library.types.StringListType;
+  }
+
+  /* enum */class NextPreviousType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
 
     // NEXT:NextPreviousType;
     // PREVIOUS:NextPreviousType;
@@ -492,6 +540,17 @@ declare namespace org.openhab.core.library.types {
 
   } // end NextPreviousType
 
+  interface NextPreviousTypeStatic {
+
+    NEXT: org.openhab.core.library.types.NextPreviousType;
+    PREVIOUS: org.openhab.core.library.types.NextPreviousType;
+
+    readonly class: org.openhab.core.library.types.NextPreviousType;
+    valueOf(arg0: string): org.openhab.core.library.types.NextPreviousType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    values(): [org.openhab.core.library.types.NextPreviousType];
+  }
+
   interface DateTimeGroupFunction/* extends org.openhab.core.items.GroupFunction*/ {
 
     calculate(arg0: java.util.Set<any /*org.openhab.core.items.Item*/>): any /*org.openhab.core.types.State*/;
@@ -500,6 +559,10 @@ declare namespace org.openhab.core.library.types {
 
   } // end DateTimeGroupFunction
 
+  interface DateTimeGroupFunctionStatic {
+
+    readonly class: any;
+  }
 
   interface ArithmeticGroupFunction/* extends org.openhab.core.items.GroupFunction*/ {
 
@@ -509,6 +572,10 @@ declare namespace org.openhab.core.library.types {
 
   } // end ArithmeticGroupFunction
 
+  interface ArithmeticGroupFunctionStatic {
+
+    readonly class: any;
+  }
 
   class StringType/* extends java.lang.Object implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
@@ -519,6 +586,14 @@ declare namespace org.openhab.core.library.types {
     toString(): string;
 
   } // end StringType
+
+  interface StringTypeStatic {
+
+    readonly class: org.openhab.core.library.types.StringType;
+    new(arg0: string): org.openhab.core.library.types.StringType;
+    new(): org.openhab.core.library.types.StringType;
+    valueOf(arg0: string): org.openhab.core.library.types.StringType;
+  }
 
   class DateTimeType/* extends java.lang.Object implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
@@ -535,7 +610,16 @@ declare namespace org.openhab.core.library.types {
 
   } // end DateTimeType
 
-            /* enum */class PlayPauseType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
+  interface DateTimeTypeStatic {
+
+    readonly class: org.openhab.core.library.types.DateTimeType;
+    new(arg0: java.time.ZonedDateTime): org.openhab.core.library.types.DateTimeType;
+    new(): org.openhab.core.library.types.DateTimeType;
+    new(arg0: string): org.openhab.core.library.types.DateTimeType;
+    valueOf(arg0: string): org.openhab.core.library.types.DateTimeType;
+  }
+
+  /* enum */class PlayPauseType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
     // PLAY:PlayPauseType;
     // PAUSE:PlayPauseType;
@@ -552,8 +636,18 @@ declare namespace org.openhab.core.library.types {
 
   } // end PlayPauseType
 
+  interface PlayPauseTypeStatic {
 
-    /* enum */class StopMoveType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
+    PLAY: org.openhab.core.library.types.PlayPauseType;
+    PAUSE: org.openhab.core.library.types.PlayPauseType;
+
+    readonly class: org.openhab.core.library.types.PlayPauseType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    valueOf(arg0: string): org.openhab.core.library.types.PlayPauseType;
+    values(): [org.openhab.core.library.types.PlayPauseType];
+  }
+
+  /* enum */class StopMoveType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
 
     // STOP:StopMoveType;
     // MOVE:StopMoveType;
@@ -569,8 +663,18 @@ declare namespace org.openhab.core.library.types {
 
   } // end StopMoveType
 
+  interface StopMoveTypeStatic {
 
-    /* enum */class OpenClosedType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
+    STOP: org.openhab.core.library.types.StopMoveType;
+    MOVE: org.openhab.core.library.types.StopMoveType;
+
+    readonly class: org.openhab.core.library.types.StopMoveType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    valueOf(arg0: string): org.openhab.core.library.types.StopMoveType;
+    values(): [org.openhab.core.library.types.StopMoveType];
+  }
+
+  /* enum */class OpenClosedType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
     // OPEN:OpenClosedType;
     // CLOSED:OpenClosedType;
@@ -586,6 +690,17 @@ declare namespace org.openhab.core.library.types {
     toString(): string;
 
   } // end OpenClosedType
+
+  interface OpenClosedTypeStatic {
+
+    OPEN: org.openhab.core.library.types.OpenClosedType;
+    CLOSED: org.openhab.core.library.types.OpenClosedType;
+
+    readonly class: org.openhab.core.library.types.OpenClosedType;
+    valueOf(arg0: string): org.openhab.core.library.types.OpenClosedType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    values(): [org.openhab.core.library.types.OpenClosedType];
+  }
 
   class DecimalType/* extends java.lang.Number implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command, java.lang.Comparable<any>*/ {
 
@@ -605,7 +720,18 @@ declare namespace org.openhab.core.library.types {
 
   } // end DecimalType
 
-    /* enum */class OnOffType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
+  interface DecimalTypeStatic {
+
+    readonly class: org.openhab.core.library.types.DecimalType;
+    new(arg0: double): org.openhab.core.library.types.DecimalType;
+    new(arg0: long): org.openhab.core.library.types.DecimalType;
+    new(arg0: java.math.BigDecimal): org.openhab.core.library.types.DecimalType;
+    new(): org.openhab.core.library.types.DecimalType;
+    new(arg0: string): org.openhab.core.library.types.DecimalType;
+    valueOf(arg0: string): org.openhab.core.library.types.DecimalType;
+  }
+
+  /* enum */class OnOffType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
     // ON:OnOffType;
     // OFF:OnOffType;
@@ -622,6 +748,19 @@ declare namespace org.openhab.core.library.types {
 
   } // end OnOffType
 
+  interface OnOffTypeStatic {
+
+    ON: org.openhab.core.library.types.OnOffType;
+    OFF: org.openhab.core.library.types.OnOffType;
+
+    readonly class: org.openhab.core.library.types.OnOffType;
+    from(arg0: boolean): org.openhab.core.library.types.OnOffType;
+    from(arg0: string): org.openhab.core.library.types.OnOffType;
+    valueOf(arg0: string): org.openhab.core.library.types.OnOffType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    values(): [org.openhab.core.library.types.OnOffType];
+  }
+
   interface QuantityTypeArithmeticGroupFunction/* extends org.openhab.core.items.GroupFunction*/ {
 
     calculate(arg0: java.util.Set<any /*org.openhab.core.items.Item*/>): any /*org.openhab.core.types.State*/;
@@ -629,6 +768,11 @@ declare namespace org.openhab.core.library.types {
     getStateAs<T>(arg0: java.util.Set<any /*org.openhab.core.items.Item*/>, arg1: java.lang.Class<T>): T;
 
   } // end QuantityTypeArithmeticGroupFunction
+
+  interface QuantityTypeArithmeticGroupFunctionStatic {
+
+    readonly class: any;
+  }
 
   class HSBType/* extends PercentType implements org.openhab.core.types.ComplexType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
@@ -658,7 +802,20 @@ declare namespace org.openhab.core.library.types {
 
   } // end HSBType
 
-    /* enum */class RewindFastforwardType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
+  interface HSBTypeStatic {
+
+    readonly class: org.openhab.core.library.types.HSBType;
+    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.PercentType, arg2: org.openhab.core.library.types.PercentType): org.openhab.core.library.types.HSBType;
+    new(): org.openhab.core.library.types.HSBType;
+    new(arg0: string): org.openhab.core.library.types.HSBType;
+    fromRGB(arg0: int, arg1: int, arg2: int): org.openhab.core.library.types.HSBType;
+    fromXY(arg0: float, arg1: float): org.openhab.core.library.types.HSBType;
+    valueOf(arg0: string): org.openhab.core.library.types.PercentType;
+    valueOf(arg0: string): org.openhab.core.library.types.HSBType;
+    valueOf(arg0: string): org.openhab.core.library.types.DecimalType;
+  }
+
+  /* enum */class RewindFastforwardType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
     // REWIND:RewindFastforwardType;
     // FASTFORWARD:RewindFastforwardType;
@@ -675,7 +832,18 @@ declare namespace org.openhab.core.library.types {
 
   } // end RewindFastforwardType
 
-    /* enum */class IncreaseDecreaseType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
+  interface RewindFastforwardTypeStatic {
+
+    REWIND: org.openhab.core.library.types.RewindFastforwardType;
+    FASTFORWARD: org.openhab.core.library.types.RewindFastforwardType;
+
+    readonly class: org.openhab.core.library.types.RewindFastforwardType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    valueOf(arg0: string): org.openhab.core.library.types.RewindFastforwardType;
+    values(): [org.openhab.core.library.types.RewindFastforwardType];
+  }
+
+  /* enum */class IncreaseDecreaseType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
 
     // INCREASE:IncreaseDecreaseType;
     // DECREASE:IncreaseDecreaseType;
@@ -691,6 +859,17 @@ declare namespace org.openhab.core.library.types {
 
   } // end IncreaseDecreaseType
 
+  interface IncreaseDecreaseTypeStatic {
+
+    INCREASE: org.openhab.core.library.types.IncreaseDecreaseType;
+    DECREASE: org.openhab.core.library.types.IncreaseDecreaseType;
+
+    readonly class: org.openhab.core.library.types.IncreaseDecreaseType;
+    valueOf(arg0: string): org.openhab.core.library.types.IncreaseDecreaseType;
+    valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
+    values(): [org.openhab.core.library.types.IncreaseDecreaseType];
+  }
+
   class RawType/* extends java.lang.Object implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -703,5 +882,11 @@ declare namespace org.openhab.core.library.types {
 
   } // end RawType
 
+  interface RawTypeStatic {
+
+    readonly class: org.openhab.core.library.types.RawType;
+    new(arg0: bytearray, arg1: string): org.openhab.core.library.types.RawType;
+    valueOf(arg0: string): org.openhab.core.library.types.RawType;
+  }
 
 } // end namespace org.openhab.core.library.types
