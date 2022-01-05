@@ -357,6 +357,13 @@ declare namespace org.openhab.core.automation.module.script.rulesupport.shared.s
 } // end namespace org.openhab.core.automation.module.script.rulesupport.shared.simple
 
 declare namespace org.openhab.core.types {
+
+  interface RefreshTypeClass {
+    readonly static: RefreshTypeStatic
+    readonly class: java.lang.Class<RefreshType>
+  }
+
+
 /* enum */class RefreshType/* extends java.lang.Enum<any> implements PrimitiveType, Command*/ {
 
     // REFRESH:RefreshType;
@@ -380,6 +387,11 @@ declare namespace org.openhab.core.types {
     valueOf(arg0: string): org.openhab.core.types.RefreshType;
     valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
     values(): [org.openhab.core.types.RefreshType];
+  }
+
+  interface UnDefTypeClass {
+    readonly static: UnDefTypeStatic
+    readonly class: java.lang.Class<UnDefType>
   }
 
 /* enum */class UnDefType/* extends java.lang.Enum<any> implements PrimitiveType, State*/ {
@@ -416,6 +428,11 @@ declare namespace org.openhab.core.types {
 
 declare namespace org.openhab.core.library.types {
 
+  interface UpDownTypeClass {
+    readonly static: UpDownTypeStatic
+    readonly class: java.lang.Class<UpDownType>
+  }
+
     /* enum */class UpDownType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
     // UP:UpDownType;
@@ -444,6 +461,20 @@ declare namespace org.openhab.core.library.types {
     values(): [org.openhab.core.library.types.UpDownType];
   }
 
+  interface PointTypeClass extends PointTypeConstructor{
+    readonly static: PointTypeStatic
+    readonly class: java.lang.Class<PointType>
+  }
+
+  interface PointTypeConstructor {
+    new(arg0: org.openhab.core.library.types.StringType, arg1: org.openhab.core.library.types.StringType, arg2: org.openhab.core.library.types.StringType): org.openhab.core.library.types.PointType;
+    new(arg0: string): org.openhab.core.library.types.PointType;
+    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.DecimalType, arg2: org.openhab.core.library.types.DecimalType): org.openhab.core.library.types.PointType;
+    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.DecimalType): org.openhab.core.library.types.PointType;
+    new(): org.openhab.core.library.types.PointType;
+    new(arg0: org.openhab.core.library.types.StringType, arg1: org.openhab.core.library.types.StringType): org.openhab.core.library.types.PointType;
+  }
+
   class PointType/* extends java.lang.Object implements org.openhab.core.types.ComplexType, org.openhab.core.types.Command, org.openhab.core.types.State*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -461,16 +492,21 @@ declare namespace org.openhab.core.library.types {
 
   } // end PointType
 
-  interface PointTypeStatic {
-
+  interface PointTypeStatic extends PointTypeConstructor{
     readonly class: org.openhab.core.library.types.PointType;
-    new(arg0: org.openhab.core.library.types.StringType, arg1: org.openhab.core.library.types.StringType, arg2: org.openhab.core.library.types.StringType): org.openhab.core.library.types.PointType;
-    new(arg0: string): org.openhab.core.library.types.PointType;
-    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.DecimalType, arg2: org.openhab.core.library.types.DecimalType): org.openhab.core.library.types.PointType;
-    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.DecimalType): org.openhab.core.library.types.PointType;
-    new(): org.openhab.core.library.types.PointType;
-    new(arg0: org.openhab.core.library.types.StringType, arg1: org.openhab.core.library.types.StringType): org.openhab.core.library.types.PointType;
     valueOf(arg0: string): org.openhab.core.library.types.PointType;
+  }
+
+  interface PercentTypeClass extends PercentTypeConstructor{
+    readonly static: PercentTypeStatic
+    readonly class: java.lang.Class<PercentType>
+  }
+
+  interface PercentTypeConstructor {
+    new(arg0: string): org.openhab.core.library.types.PercentType;
+    new(arg0: int): org.openhab.core.library.types.PercentType;
+    new(): org.openhab.core.library.types.PercentType;
+    new(arg0: java.math.BigDecimal): org.openhab.core.library.types.PercentType;
   }
 
   class PercentType/* extends DecimalType*/ {
@@ -491,15 +527,23 @@ declare namespace org.openhab.core.library.types {
 
   } // end PercentType
 
-  interface PercentTypeStatic {
-
+  interface PercentTypeStatic extends PercentTypeConstructor{
     readonly class: org.openhab.core.library.types.PercentType;
-    new(arg0: string): org.openhab.core.library.types.PercentType;
-    new(arg0: int): org.openhab.core.library.types.PercentType;
-    new(): org.openhab.core.library.types.PercentType;
-    new(arg0: java.math.BigDecimal): org.openhab.core.library.types.PercentType;
     valueOf(arg0: string): org.openhab.core.library.types.PercentType;
     valueOf(arg0: string): org.openhab.core.library.types.DecimalType;
+  }
+
+  interface StringListTypeClass extends StringListTypeConstructor{
+    readonly static: StringListTypeStatic
+    readonly class: java.lang.Class<StringListType>
+  }
+
+  interface StringListTypeConstructor {
+    new(arg0: string): org.openhab.core.library.types.StringListType;
+    new(...arg0: string[]): org.openhab.core.library.types.StringListType;
+    new(...arg0: org.openhab.core.library.types.StringType[]): org.openhab.core.library.types.StringListType;
+    new(arg0: java.util.List<string>): org.openhab.core.library.types.StringListType;
+    new(): org.openhab.core.library.types.StringListType;
   }
 
   class StringListType/* extends java.lang.Object implements org.openhab.core.types.Command, org.openhab.core.types.State*/ {
@@ -513,15 +557,14 @@ declare namespace org.openhab.core.library.types {
 
   } // end StringListType
 
-  interface StringListTypeStatic {
-
+  interface StringListTypeStatic extends StringListTypeConstructor{
     readonly class: org.openhab.core.library.types.StringListType;
-    new(arg0: string): org.openhab.core.library.types.StringListType;
-    new(...arg0: string[]): org.openhab.core.library.types.StringListType;
-    new(...arg0: org.openhab.core.library.types.StringType[]): org.openhab.core.library.types.StringListType;
-    new(arg0: java.util.List<string>): org.openhab.core.library.types.StringListType;
-    new(): org.openhab.core.library.types.StringListType;
     valueOf(arg0: string): org.openhab.core.library.types.StringListType;
+  }
+
+  interface NextPreviousTypeClass{
+    readonly static: NextPreviousTypeStatic
+    readonly class: java.lang.Class<NextPreviousType>
   }
 
   /* enum */class NextPreviousType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
@@ -539,6 +582,8 @@ declare namespace org.openhab.core.library.types {
     toString(): string;
 
   } // end NextPreviousType
+
+
 
   interface NextPreviousTypeStatic {
 
@@ -577,6 +622,16 @@ declare namespace org.openhab.core.library.types {
     readonly class: any;
   }
 
+  interface StringTypeClass extends StringTypeConstructor {
+    readonly static: StringTypeStatic
+    readonly class: java.lang.Class<StringType>
+  }
+
+  interface StringTypeConstructor {
+    new(arg0: string): org.openhab.core.library.types.StringType;
+    new(): org.openhab.core.library.types.StringType;
+  }
+
   class StringType/* extends java.lang.Object implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -587,12 +642,20 @@ declare namespace org.openhab.core.library.types {
 
   } // end StringType
 
-  interface StringTypeStatic {
-
+  interface StringTypeStatic extends StringTypeConstructor {
     readonly class: org.openhab.core.library.types.StringType;
-    new(arg0: string): org.openhab.core.library.types.StringType;
-    new(): org.openhab.core.library.types.StringType;
     valueOf(arg0: string): org.openhab.core.library.types.StringType;
+  }
+
+  interface DateTimeTypeClass extends DateTimeTypeConstructor {
+    readonly static: DateTimeTypeStatic
+    readonly class: java.lang.Class<DateTimeType>
+  }
+
+  interface DateTimeTypeConstructor {
+    new(arg0: java.time.ZonedDateTime): org.openhab.core.library.types.DateTimeType;
+    new(): org.openhab.core.library.types.DateTimeType;
+    new(arg0: string): org.openhab.core.library.types.DateTimeType;
   }
 
   class DateTimeType/* extends java.lang.Object implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
@@ -610,13 +673,16 @@ declare namespace org.openhab.core.library.types {
 
   } // end DateTimeType
 
-  interface DateTimeTypeStatic {
+  interface DateTimeTypeStatic extends DateTimeTypeConstructor {
 
     readonly class: org.openhab.core.library.types.DateTimeType;
-    new(arg0: java.time.ZonedDateTime): org.openhab.core.library.types.DateTimeType;
-    new(): org.openhab.core.library.types.DateTimeType;
-    new(arg0: string): org.openhab.core.library.types.DateTimeType;
+
     valueOf(arg0: string): org.openhab.core.library.types.DateTimeType;
+  }
+
+  interface PlayPauseTypeClass {
+    readonly static: PlayPauseTypeStatic
+    readonly class: java.lang.Class<PlayPauseType>
   }
 
   /* enum */class PlayPauseType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
@@ -647,6 +713,11 @@ declare namespace org.openhab.core.library.types {
     values(): [org.openhab.core.library.types.PlayPauseType];
   }
 
+  interface StopMoveTypeClass {
+    readonly static: StopMoveTypeStatic
+    readonly class: java.lang.Class<StopMoveType>
+  }
+
   /* enum */class StopMoveType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
 
     // STOP:StopMoveType;
@@ -672,6 +743,11 @@ declare namespace org.openhab.core.library.types {
     valueOf<T>(arg0: java.lang.Class<T>, arg1: string): T;
     valueOf(arg0: string): org.openhab.core.library.types.StopMoveType;
     values(): [org.openhab.core.library.types.StopMoveType];
+  }
+
+  interface OpenClosedTypeClass {
+    readonly static: OpenClosedTypeStatic
+    readonly class: java.lang.Class<OpenClosedType>
   }
 
   /* enum */class OpenClosedType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
@@ -702,6 +778,19 @@ declare namespace org.openhab.core.library.types {
     values(): [org.openhab.core.library.types.OpenClosedType];
   }
 
+  interface DecimalTypeClass extends DecimalTypeConstructor {
+    readonly static: DecimalTypeStatic
+    readonly class: java.lang.Class<DecimalType>
+  }
+
+  interface DecimalTypeConstructor {
+    new(arg0: double): org.openhab.core.library.types.DecimalType;
+    new(arg0: long): org.openhab.core.library.types.DecimalType;
+    new(arg0: java.math.BigDecimal): org.openhab.core.library.types.DecimalType;
+    new(): org.openhab.core.library.types.DecimalType;
+    new(arg0: string): org.openhab.core.library.types.DecimalType;
+  }
+
   class DecimalType/* extends java.lang.Number implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command, java.lang.Comparable<any>*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -720,15 +809,14 @@ declare namespace org.openhab.core.library.types {
 
   } // end DecimalType
 
-  interface DecimalTypeStatic {
-
+  interface DecimalTypeStatic extends DecimalTypeConstructor {
     readonly class: org.openhab.core.library.types.DecimalType;
-    new(arg0: double): org.openhab.core.library.types.DecimalType;
-    new(arg0: long): org.openhab.core.library.types.DecimalType;
-    new(arg0: java.math.BigDecimal): org.openhab.core.library.types.DecimalType;
-    new(): org.openhab.core.library.types.DecimalType;
-    new(arg0: string): org.openhab.core.library.types.DecimalType;
     valueOf(arg0: string): org.openhab.core.library.types.DecimalType;
+  }
+
+  interface OnOffTypeClass {
+    readonly static: OnOffTypeStatic
+    readonly class: java.lang.Class<OnOffType>
   }
 
   /* enum */class OnOffType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
@@ -774,6 +862,17 @@ declare namespace org.openhab.core.library.types {
     readonly class: any;
   }
 
+  interface HSBTypeClass extends HSBTypeConstructor {
+    readonly static: HSBTypeStatic
+    readonly class: java.lang.Class<HSBType>
+  }
+
+  interface HSBTypeConstructor {
+    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.PercentType, arg2: org.openhab.core.library.types.PercentType): org.openhab.core.library.types.HSBType;
+    new(): org.openhab.core.library.types.HSBType;
+    new(arg0: string): org.openhab.core.library.types.HSBType;
+  }
+
   class HSBType/* extends PercentType implements org.openhab.core.types.ComplexType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -802,17 +901,20 @@ declare namespace org.openhab.core.library.types {
 
   } // end HSBType
 
-  interface HSBTypeStatic {
+  interface HSBTypeStatic extends HSBTypeConstructor {
 
     readonly class: org.openhab.core.library.types.HSBType;
-    new(arg0: org.openhab.core.library.types.DecimalType, arg1: org.openhab.core.library.types.PercentType, arg2: org.openhab.core.library.types.PercentType): org.openhab.core.library.types.HSBType;
-    new(): org.openhab.core.library.types.HSBType;
-    new(arg0: string): org.openhab.core.library.types.HSBType;
+
     fromRGB(arg0: int, arg1: int, arg2: int): org.openhab.core.library.types.HSBType;
     fromXY(arg0: float, arg1: float): org.openhab.core.library.types.HSBType;
     valueOf(arg0: string): org.openhab.core.library.types.PercentType;
     valueOf(arg0: string): org.openhab.core.library.types.HSBType;
     valueOf(arg0: string): org.openhab.core.library.types.DecimalType;
+  }
+
+  interface RewindFastforwardTypeClass {
+    readonly static: RewindFastforwardTypeStatic
+    readonly class: java.lang.Class<RewindFastforwardType>
   }
 
   /* enum */class RewindFastforwardType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command*/ {
@@ -843,6 +945,11 @@ declare namespace org.openhab.core.library.types {
     values(): [org.openhab.core.library.types.RewindFastforwardType];
   }
 
+  interface IncreaseDecreaseTypeClass {
+    readonly static: IncreaseDecreaseTypeStatic
+    readonly class: java.lang.Class<IncreaseDecreaseType>
+  }
+
   /* enum */class IncreaseDecreaseType/* extends java.lang.Enum<any> implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command*/ {
 
     // INCREASE:IncreaseDecreaseType;
@@ -870,6 +977,15 @@ declare namespace org.openhab.core.library.types {
     values(): [org.openhab.core.library.types.IncreaseDecreaseType];
   }
 
+  interface RawTypeClass extends RawTypeConstructor {
+    readonly static: RawTypeStatic
+    readonly class: java.lang.Class<RawType>
+  }
+
+  interface RawTypeConstructor {
+    new(arg0: bytearray, arg1: string): org.openhab.core.library.types.RawType;
+  }
+
   class RawType/* extends java.lang.Object implements org.openhab.core.types.PrimitiveType, org.openhab.core.types.State*/ {
 
     as<T>(arg0: java.lang.Class<T>): T;
@@ -882,10 +998,10 @@ declare namespace org.openhab.core.library.types {
 
   } // end RawType
 
-  interface RawTypeStatic {
+  interface RawTypeStatic extends RawTypeConstructor {
 
     readonly class: org.openhab.core.library.types.RawType;
-    new(arg0: bytearray, arg1: string): org.openhab.core.library.types.RawType;
+
     valueOf(arg0: string): org.openhab.core.library.types.RawType;
   }
 
