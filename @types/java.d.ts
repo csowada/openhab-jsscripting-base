@@ -10,11 +10,29 @@ type bytearray = [char];
 
 declare namespace java.lang {
 
-    interface Class<T> { }
+
     interface AutoCloseable { }
     interface Cloneable { }
 
-    type Object = any;
+    class Object {
+        readonly class: any;
+        toString(): string;
+    }
+
+    interface Class<T> extends Object {
+        readonly class: Class<T>;
+    }
+
+    interface Enum<T> extends Object {
+        readonly class: Class<T>;
+        compareTo<E>(arg0: E): int;
+        getDeclaringClass<E>(): java.lang.Class<E>;
+        name(): string;
+        ordinal(): int;
+        valueOf(enumType: java.lang.Class<T>, name: string): T;
+    }
+
+    // type Object = any;
 
     interface Runnable {
 
@@ -36,7 +54,7 @@ declare namespace java.lang {
     
       } // end Iterable
 
-    class String/* extends Object implements java.io.Serializable, Comparable<any>, CharSequence*/ {
+      class String extends Object implements java.io.Serializable, Comparable<any> /*, CharSequence*/ {
 
         charAt(arg0: int): any /*char*/;
         chars(): any /*java.util.stream.IntStream*/;
@@ -115,7 +133,7 @@ declare namespace java.util {
 
     } // end Iterator
 
-    interface Collection<E>/* extends java.lang.Iterable<E>*/ {
+    interface Collection<E> extends java.lang.Iterable<E> {
 
         add(arg0: E): boolean;
         addAll(arg0: Collection<E>): boolean;
@@ -183,7 +201,7 @@ declare namespace java.util {
 
     } // end Map
 
-    class Locale/* extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable*/ {
+    class Locale extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable {
 
         clone(): any /*java.lang.Object*/;
         equals(arg0: any /*java.lang.Object*/): boolean;
@@ -240,7 +258,7 @@ declare namespace java.io {
 
 declare namespace java.time {
 
-    class LocalTime/* extends java.lang.Object implements java.time.temporal.Temporal, java.time.temporal.TemporalAdjuster, java.lang.Comparable<any>, java.io.Serializable*/ {
+    class LocalTime extends java.lang.Object implements java.time.temporal.Temporal /*java.time.temporal.TemporalAdjuster, java.lang.Comparable<any>, java.io.Serializable*/ {
 
         adjustInto(arg0: java.time.temporal.Temporal): java.time.temporal.Temporal;
         atDate(arg0: LocalDate): LocalDateTime;
@@ -287,7 +305,47 @@ declare namespace java.time {
 
     } // end LocalTime
 
-    class ZonedDateTime/* extends java.lang.Object implements java.time.temporal.Temporal, java.time.chrono.ChronoZonedDateTime<any>, java.io.Serializable*/ {
+    type ZonedDateTimeClass = {
+        class: ZonedDateTime;
+
+        /** Access to all static class methods */
+        static: ZonedDateTimeStatic;
+    }
+
+    class ZonedDateTimeStatic {
+
+        /** Obtains an instance of ZonedDateTime from a temporal object. */
+        from(temporal: any /*TemporalAccessor*/): any;
+
+        /** Obtains the current date-time from the system clock in the default time-zone. */
+        now(): ZonedDateTime
+
+        /** Obtains the current date-time from the system clock in the specified time-zone. */
+        now(zone: any /* java.time.ZoneId*/): ZonedDateTime
+
+        /** Obtains an instance of ZonedDateTime from a year, month, day, hour, minute, second, nanosecond and time-zone. */
+        of(year: number, month: number, dayOfMonth: number, hour: number, minute: number, second: number, nanoOfSecond: number, zone: any /* java.time.ZoneId */): ZonedDateTime
+
+        // static ZonedDateTime	of(LocalDate date, LocalTime time, ZoneId zone)
+        // Obtains an instance of ZonedDateTime from a local date and time.
+        // static ZonedDateTime	of(LocalDateTime localDateTime, ZoneId zone)
+        // Obtains an instance of ZonedDateTime from a local date-time.
+        // static ZonedDateTime	ofInstant(Instant instant, ZoneId zone)
+        // Obtains an instance of ZonedDateTime from an Instant.
+        // static ZonedDateTime	ofInstant(LocalDateTime localDateTime, ZoneOffset offset, ZoneId zone)
+        // Obtains an instance of ZonedDateTime from the instant formed by combining the local date-time and offset.
+        // static ZonedDateTime	ofLocal(LocalDateTime localDateTime, ZoneId zone, ZoneOffset preferredOffset)
+        // Obtains an instance of ZonedDateTime from a local date-time using the preferred offset if possible.
+        // static ZonedDateTime	ofStrict(LocalDateTime localDateTime, ZoneOffset offset, ZoneId zone)
+        // Obtains an instance of ZonedDateTime strictly validating the combination of local date-time, offset and zone ID.
+        // static ZonedDateTime	parse(CharSequence text)
+        // Obtains an instance of ZonedDateTime from a text string such as 2007-12-03T10:15:30+01:00[Europe/Paris].
+        // static ZonedDateTime	parse(CharSequence text, DateTimeFormatter formatter)
+        // Obtains an instance of ZonedDateTime from a text string using a specific formatter.
+
+    }
+
+    class ZonedDateTime extends java.lang.Object /* implements java.time.temporal.Temporal, java.time.chrono.ChronoZonedDateTime<any>, java.io.Serializable*/ {
 
         compareTo(arg0: any /*java.time.chrono.ChronoZonedDateTime*/): int;
         equals(arg0: any /*java.lang.Object*/): boolean;
@@ -361,7 +419,7 @@ declare namespace java.time {
 
     } // end ZonedDateTime
 
-    class ZoneOffset/* extends ZoneId implements java.time.temporal.TemporalAccessor, java.time.temporal.TemporalAdjuster, java.lang.Comparable<any>, java.io.Serializable*/ {
+    class ZoneOffset extends java.lang.Object  /* extends ZoneId implements java.time.temporal.TemporalAccessor, java.time.temporal.TemporalAdjuster, java.lang.Comparable<any>, java.io.Serializable*/ {
 
         adjustInto(arg0: java.time.temporal.Temporal): java.time.temporal.Temporal;
         compareTo(arg0: ZoneOffset): int;
@@ -380,7 +438,7 @@ declare namespace java.time {
 
     } // end ZoneOffset
 
-    class LocalDateTime/* extends java.lang.Object implements java.time.temporal.Temporal, java.time.temporal.TemporalAdjuster, java.time.chrono.ChronoLocalDateTime<any>, java.io.Serializable*/ {
+    class LocalDateTime extends java.lang.Object /* implements java.time.temporal.Temporal, java.time.temporal.TemporalAdjuster, java.time.chrono.ChronoLocalDateTime<any>, java.io.Serializable*/ {
 
         adjustInto(arg0: java.time.temporal.Temporal): java.time.temporal.Temporal;
         atOffset(arg0: ZoneOffset): OffsetDateTime;
@@ -448,7 +506,7 @@ declare namespace java.time {
 
     } // end LocalDateTime
 
-    class OffsetDateTime/* extends java.lang.Object implements java.time.temporal.Temporal, java.time.temporal.TemporalAdjuster, java.lang.Comparable<any>, java.io.Serializable*/ {
+    class OffsetDateTime extends java.lang.Object /* implements java.time.temporal.Temporal, java.time.temporal.TemporalAdjuster, java.lang.Comparable<any>, java.io.Serializable*/ {
 
         adjustInto(arg0: java.time.temporal.Temporal): java.time.temporal.Temporal;
         atZoneSameInstant(arg0: any /*java.time.ZoneId*/): ZonedDateTime;
@@ -589,7 +647,7 @@ declare namespace java.time {
 
     } // end DayOfWeek
 
-    class LocalDate/* extends java.lang.Object implements java.time.temporal.Temporal, java.time.temporal.TemporalAdjuster, java.time.chrono.ChronoLocalDate, java.io.Serializable*/ {
+    class LocalDate extends java.lang.Object /* implements java.time.temporal.Temporal, java.time.temporal.TemporalAdjuster, java.time.chrono.ChronoLocalDate, java.io.Serializable*/ {
 
         adjustInto(arg0: java.time.temporal.Temporal): java.time.temporal.Temporal;
         atStartOfDay(): LocalDateTime;

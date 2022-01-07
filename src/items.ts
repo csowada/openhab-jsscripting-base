@@ -1,7 +1,7 @@
-import { events, ir} from "@runtime";
+import { events, ir, DateTimeType, DecimalType, UNDEF, NULL} from "@runtime";
 import { fromSet } from "./java-utils";
 import { getLogger } from "./logger";
-import { DateTimeType, DecimalType, UnDefType } from "./openhab-types";
+// import { DateTimeType, DecimalType, UnDefType } from "./openhab-types";
 
 type ItemNameOrItem = string | org.openhab.core.items.Item;
 type ReturnItemsMap<T extends string> = {[K in T]: org.openhab.core.items.Item | null};
@@ -110,7 +110,7 @@ export const isValidState = (item: ItemNameOrItem | null): boolean => {
   }
 
   const itm = getItem(item);
-  if (itm && itm.getState() !== UnDefType.UNDEF && itm.getState() !== UnDefType.NULL) {
+  if (itm && itm.getState() !== UNDEF && itm.getState() !== NULL) {
     return true;
   }
 
@@ -165,7 +165,7 @@ export const stateAsString = (itemName: ItemNameOrItem, callback?: (value: strin
   let item = getItem(itemName);
   if (item) {
 
-    if(item.getState() === UnDefType.UNDEF || item.getState() === UnDefType.NULL) {
+    if(item.getState() === UNDEF || item.getState() === NULL) {
       return null;
     }
 
@@ -251,7 +251,7 @@ export const statesAsNumber = (itemNames: ItemNameOrItem[], callback: (values: n
  */
 export const stateAsDateTime = (itemName: ItemNameOrItem, callback?: (value: java.time.ZonedDateTime) => void): java.time.ZonedDateTime | null => {
 
-  const dateTime = getItem(itemName)?.getStateAs(DateTimeType.class)?.getZonedDateTime() || null;
+  const dateTime = getItem(itemName)?.getStateAs(DateTimeType.static.class)?.getZonedDateTime() || null;
   if (dateTime && callback) {
     callback(dateTime);
   }

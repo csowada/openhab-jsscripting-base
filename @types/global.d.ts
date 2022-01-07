@@ -1,5 +1,3 @@
-declare module '@runtime/JavaScriptUtils'
-
 /**
  * openHAB 3.x OSGi imports
  */
@@ -51,9 +49,7 @@ declare module '@runtime' {
     export var RewindFastforwardType: org.openhab.core.library.types.RewindFastforwardTypeClass
     export var IncreaseDecreaseType: org.openhab.core.library.types.IncreaseDecreaseTypeClass
 
-
     export var QuantityType: any // class java.lang.Class
-    
     
     
     export var UP: org.openhab.core.library.types.UpDownType
@@ -76,31 +72,43 @@ declare module '@runtime' {
     export var OPEN: org.openhab.core.library.types.OpenClosedType
     export var MOVE: org.openhab.core.library.types.StopMoveType
 
-    export var voice: any // class org.openhab.core.voice.internal.VoiceManagerImpl
-    export var rules: any // class org.openhab.core.automation.internal.RuleRegistryImpl
-    export var ImperialUnits: any // class java.lang.Class
-    export var ZonedDateTime: any // class java.lang.Class
-    export var things: any // class org.openhab.core.thing.internal.ThingRegistryImpl
-    export var events: org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent
-    export var SIUnits: any // class java.lang.Class
+
+    // date time static functions
+    export var ChronoUnit: any // class java.lang.Class
+    export var Duration: any // class java.lang.Class
+    export var ZoneId: any // class java.lang.Class
+    export var ZonedDateTime: java.time.ZonedDateTimeClass
+
+
+    // services
+    export var items: any // class org.openhab.core.automation.module.script.internal.defaultscope.ItemRegistryDelegate
     export var itemRegistry: org.openhab.core.items.ItemRegistry
     export var ir: org.openhab.core.items.ItemRegistry
-    export var Duration: any // class java.lang.Class
-    export var Units: any // class java.lang.Class
-    export var State: any // class java.lang.Class
-    export var BinaryPrefix: any // class java.lang.Class
-    export var File: any // class java.lang.Class
-    export var items: any // class org.openhab.core.automation.module.script.internal.defaultscope.ItemRegistryDelegate
+    export var rules: org.openhab.core.automation.RuleRegistry
+    export var things: org.openhab.core.thing.ThingRegistry
+    export var events: org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent
     export var actions: any // class org.openhab.core.automation.module.script.internal.defaultscope.ScriptThingActions
+
+
+    // units
+    export var ImperialUnits: any // class java.lang.Class
     export var MetricPrefix: any // class java.lang.Class
+    export var SIUnits: any // class java.lang.Class
+    export var Units: any // class java.lang.Class
+    export var BinaryPrefix: any // class java.lang.Class
+
+
+    export var State: java.lang.Class<org.openhab.core.types.State> // class java.lang.Class
+    export var Command: java.lang.Class<org.openhab.core.types.Command> // class java.lang.Class
+    export var File: any // class java.lang.Class
+    export var Files: any // class java.lang.Class
+    export var Path: any // class java.lang.Class
     export var Paths: any // class java.lang.Class
+
+
+    export var voice: any // class org.openhab.core.voice.internal.VoiceManagerImpl
     export var audio: any // class org.openhab.core.audio.internal.AudioManagerImpl
     export var URLEncoder: any // class java.lang.Class
-    export var Files: any // class java.lang.Class
     export var sharedcache: any // class org.openhab.automation.jsscripting.internal.scope.SharedCache$JSCache
-    export var Path: any // class java.lang.Class
-    export var ZoneId: any // class java.lang.Class
-    export var Command: any // class java.lang.Class
     export var lifecycleTracker: any // class org.openhab.core.automation.module.script.LifecycleScriptExtensionProvider$LifecycleTracker
-    export var ChronoUnit: any // class java.lang.Class
 }
