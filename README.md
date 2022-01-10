@@ -54,7 +54,7 @@ or
 
 ```javascript
 const {getLogger, createRule, TimeOfDayTrigger, postUpdate, DateTimeType} = require("openhab-jsscripting-base");
-const logger = openhab_jsscripting_base.getLogger("my-logger");
+const logger = getLogger("my-logger");
 
 const rule0 = createRule({
     name: "Heutiges Datum setzen",
