@@ -22,8 +22,9 @@ npm install csowada/openhab-jsscripting-base --no-save
 In your openHAB folder root.
 
 * Create a folder ``automation/js``
-
-* Install library from github
+* Install ``jsscripting`` from the marketplace
+* Set ``Do Not Use Built-in Variables`` in JS Scripting configuration to have a clean global scope
+* Install library within the ``js`` folder
 
 ```bash
 npm install csowada/openhab-jsscripting-base --no-save
@@ -44,6 +45,26 @@ const rule0 = openhab_jsscripting_base.createRule({
     ],
     execute: (action, input) => {
         openhab_jsscripting_base.postUpdate("Today", new openhab_jsscripting_base.DateTimeType());
+    }
+});
+
+```
+
+or
+
+```javascript
+const {getLogger, createRule, TimeOfDayTrigger, postUpdate, DateTimeType} = require("openhab-jsscripting-base");
+const logger = openhab_jsscripting_base.getLogger("my-logger");
+
+const rule0 = createRule({
+    name: "Heutiges Datum setzen",
+    description: "Heutiges Datum setzen",
+    tags: ["Date", "Today"],
+    triggers: [
+        TimeOfDayTrigger("00:00"),
+    ],
+    execute: (action, input) => {
+        postUpdate("Today", new DateTimeType());
     }
 });
 
