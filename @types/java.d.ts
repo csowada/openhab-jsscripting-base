@@ -8,6 +8,12 @@ type char = string;
 type chararray = [byte];
 type bytearray = [char];
 
+declare namespace java.io {
+
+    interface Closeable { }
+    interface Serializable { }
+}
+
 declare namespace java.lang {
 
 
@@ -15,7 +21,7 @@ declare namespace java.lang {
     interface Cloneable { }
 
     class Object {
-        readonly class: any;
+        readonly class: Class<any>;
         toString(): string;
     }
 
@@ -120,141 +126,76 @@ declare namespace java.lang {
 
 }
 
-declare namespace java.util {
+declare namespace java.math {
 
-    interface RandomAccess { }
+    class BigDecimal/* extends java.lang.Number implements java.lang.Comparable<any>*/ {
 
-    interface Iterator<E> {
-
-        forEachRemaining(arg0: java.util.funktion.Consumer<E>): void;
-        hasNext(): boolean;
-        next(): E;
-        remove(): void;
-
-    } // end Iterator
-
-    interface Collection<E> extends java.lang.Iterable<E> {
-
-        add(arg0: E): boolean;
-        addAll(arg0: Collection<E>): boolean;
-        clear(): void;
-        contains(arg0: any /*java.lang.Object*/): boolean;
-        containsAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        abs(): BigDecimal;
+        abs(arg0: any /*java.math.MathContext*/): BigDecimal;
+        add(arg0: BigDecimal): BigDecimal;
+        add(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
+        byteValue(): any /*byte*/;
+        byteValueExact(): any /*byte*/;
+        compareTo(arg0: BigDecimal): int;
+        divide(arg0: BigDecimal): BigDecimal;
+        divide(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
+        divide(arg0: BigDecimal, arg1: any /*java.math.RoundingMode*/): BigDecimal;
+        divide(arg0: BigDecimal, arg1: int): BigDecimal;
+        divide(arg0: BigDecimal, arg1: int, arg2: any /*java.math.RoundingMode*/): BigDecimal;
+        divide(arg0: BigDecimal, arg1: int, arg2: int): BigDecimal;
+        divideAndRemainder(arg0: BigDecimal): [BigDecimal];
+        divideAndRemainder(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): [BigDecimal];
+        divideToIntegralValue(arg0: BigDecimal): BigDecimal;
+        divideToIntegralValue(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
+        doubleValue(): double;
         equals(arg0: any /*java.lang.Object*/): boolean;
-        forEach<T>(arg0: java.util.funktion.Consumer<T>): void;
-        isEmpty(): boolean;
-        iterator(): Iterator<E>;
-        parallelStream(): java.util.stream.Stream<E>;
-        remove(arg0: any /*java.lang.Object*/): boolean;
-        removeAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        removeIf(arg0: java.util.funktion.Predicate<E>): boolean;
-        retainAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        size(): int;
-        spliterator(): any /*java.util.Spliterator*/;
-        stream(): java.util.stream.Stream<E>;
-        toArray(): [any /*java.lang.Object*/];
-        toArray<T>(arg0: [T]): [T];
-        toArray<T>(arg0: any /*java.util.function.IntFunction*/): [T];
-    
-      } // end Collection
-
-    interface Map<K, V> {
-
-        // static copyOf<K,V>( arg0:Map<K, V> ):Map<K, V>;
-        // static entry<K,V>( arg0:K, arg1:V ):any /*java.util.Map$Entry*/;
-        // static of<K,V>(  ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V, arg14:K, arg15:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V, arg14:K, arg15:V, arg16:K, arg17:V ):Map<K, V>;
-        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V, arg14:K, arg15:V, arg16:K, arg17:V, arg18:K, arg19:V ):Map<K, V>;
-        // static ofEntries<K,V>( ...arg0:any /*java.util.Map$Entry*/[] ):Map<K, V>;
-        clear(): void;
-        compute(arg0: K, arg1: java.util.funktion.BiFunction<K, V, V>): V;
-        computeIfAbsent(arg0: K, arg1: java.util.funktion.Func<K, V>): V;
-        computeIfPresent(arg0: K, arg1: java.util.funktion.BiFunction<K, V, V>): V;
-        containsKey(arg0: any /*java.lang.Object*/): boolean;
-        containsValue(arg0: any /*java.lang.Object*/): boolean;
-        entrySet(): Set<any /*java.util.Map$Entry*/>;
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        forEach(arg0: BiConsumer<K, V>): void;
-        get(arg0: any /*java.lang.Object*/): V;
-        getOrDefault(arg0: any /*java.lang.Object*/, arg1: V): V;
-        isEmpty(): boolean;
-        keySet(): Set<K>;
-        merge(arg0: K, arg1: V, arg2: java.util.funktion.BiFunction<V, V, V>): V;
-        put(arg0: K, arg1: V): V;
-        putAll(arg0: Map<K, V>): void;
-        putIfAbsent(arg0: K, arg1: V): V;
-        remove(arg0: any /*java.lang.Object*/): V;
-        remove(arg0: any /*java.lang.Object*/, arg1: any /*java.lang.Object*/): boolean;
-        replace(arg0: K, arg1: V): V;
-        replace(arg0: K, arg1: V, arg2: V): boolean;
-        replaceAll(arg0: java.util.funktion.BiFunction<K, V, V>): void;
-        size(): int;
-        values(): Collection<V>;
-
-    } // end Map
-
-    class Locale extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable {
-
-        clone(): any /*java.lang.Object*/;
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        getCountry(): string;
-        getDisplayCountry(): string;
-        getDisplayCountry(arg0: Locale): string;
-        getDisplayLanguage(): string;
-        getDisplayLanguage(arg0: Locale): string;
-        getDisplayName(): string;
-        getDisplayName(arg0: Locale): string;
-        getDisplayScript(): string;
-        getDisplayScript(arg0: Locale): string;
-        getDisplayVariant(): string;
-        getDisplayVariant(arg0: Locale): string;
-        getExtension(arg0: any /*char*/): string;
-        getExtensionKeys(): Set<any /*java.lang.Character*/>;
-        getISO3Country(): string;
-        getISO3Language(): string;
-        getLanguage(): string;
-        getScript(): string;
-        getUnicodeLocaleAttributes(): Set<string>;
-        getUnicodeLocaleKeys(): Set<string>;
-        getUnicodeLocaleType(arg0: string): string;
-        getVariant(): string;
-        hasExtensions(): boolean;
-        static filter(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<Locale>): List<Locale>;
-        static filter(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<Locale>, arg2: any /*java.util.Locale$FilteringMode*/): List<Locale>;
-        static filterTags(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<string>): List<string>;
-        static filterTags(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<string>, arg2: any /*java.util.Locale$FilteringMode*/): List<string>;
-        static forLanguageTag(arg0: string): Locale;
-        static getAvailableLocales(): [Locale];
-        static getDefault(): Locale;
-        static getDefault(arg0: any /*java.util.Locale$Category*/): Locale;
-        static getISOCountries(): [string];
-        static getISOCountries(arg0: any /*java.util.Locale$IsoCountryCode*/): Set<string>;
-        static getISOLanguages(): [string];
-        static lookup(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<Locale>): Locale;
-        static lookupTag(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<string>): string;
-        static setDefault(arg0: Locale): void;
-        static setDefault(arg0: any /*java.util.Locale$Category*/, arg1: Locale): void;
-        stripExtensions(): Locale;
-        toLanguageTag(): string;
+        floatValue(): float;
+        intValue(): int;
+        intValueExact(): int;
+        longValue(): long;
+        longValueExact(): long;
+        max(arg0: BigDecimal): BigDecimal;
+        min(arg0: BigDecimal): BigDecimal;
+        movePointLeft(arg0: int): BigDecimal;
+        movePointRight(arg0: int): BigDecimal;
+        multiply(arg0: BigDecimal): BigDecimal;
+        multiply(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
+        negate(): BigDecimal;
+        negate(arg0: any /*java.math.MathContext*/): BigDecimal;
+        plus(): BigDecimal;
+        plus(arg0: any /*java.math.MathContext*/): BigDecimal;
+        pow(arg0: int): BigDecimal;
+        pow(arg0: int, arg1: any /*java.math.MathContext*/): BigDecimal;
+        precision(): int;
+        remainder(arg0: BigDecimal): BigDecimal;
+        remainder(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
+        round(arg0: any /*java.math.MathContext*/): BigDecimal;
+        scale(): int;
+        scaleByPowerOfTen(arg0: int): BigDecimal;
+        setScale(arg0: int): BigDecimal;
+        setScale(arg0: int, arg1: any /*java.math.RoundingMode*/): BigDecimal;
+        setScale(arg0: int, arg1: int): BigDecimal;
+        shortValue(): any /*short*/;
+        shortValueExact(): any /*short*/;
+        signum(): int;
+        sqrt(arg0: any /*java.math.MathContext*/): BigDecimal;
+        static valueOf(arg0: double): BigDecimal;
+        static valueOf(arg0: long): BigDecimal;
+        static valueOf(arg0: long, arg1: int): BigDecimal;
+        stripTrailingZeros(): BigDecimal;
+        subtract(arg0: BigDecimal): BigDecimal;
+        subtract(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
+        toBigInteger(): any /*java.math.BigInteger*/;
+        toBigIntegerExact(): any /*java.math.BigInteger*/;
+        toEngineeringString(): string;
+        toPlainString(): string;
         toString(): string;
+        ulp(): BigDecimal;
+        unscaledValue(): any /*java.math.BigInteger*/;
 
-    } // end Locale
+    } // end BigDecimal
 
-}
-
-declare namespace java.io {
-
-    interface Closeable { }
-    interface Serializable { }
-}
+} // end namespace java.math
 
 declare namespace java.time {
 
@@ -710,380 +651,6 @@ declare namespace java.time {
 
 } // end namespace java.time
 
-declare namespace java.math {
-
-    class BigDecimal/* extends java.lang.Number implements java.lang.Comparable<any>*/ {
-
-        abs(): BigDecimal;
-        abs(arg0: any /*java.math.MathContext*/): BigDecimal;
-        add(arg0: BigDecimal): BigDecimal;
-        add(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
-        byteValue(): any /*byte*/;
-        byteValueExact(): any /*byte*/;
-        compareTo(arg0: BigDecimal): int;
-        divide(arg0: BigDecimal): BigDecimal;
-        divide(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
-        divide(arg0: BigDecimal, arg1: any /*java.math.RoundingMode*/): BigDecimal;
-        divide(arg0: BigDecimal, arg1: int): BigDecimal;
-        divide(arg0: BigDecimal, arg1: int, arg2: any /*java.math.RoundingMode*/): BigDecimal;
-        divide(arg0: BigDecimal, arg1: int, arg2: int): BigDecimal;
-        divideAndRemainder(arg0: BigDecimal): [BigDecimal];
-        divideAndRemainder(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): [BigDecimal];
-        divideToIntegralValue(arg0: BigDecimal): BigDecimal;
-        divideToIntegralValue(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
-        doubleValue(): double;
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        floatValue(): float;
-        intValue(): int;
-        intValueExact(): int;
-        longValue(): long;
-        longValueExact(): long;
-        max(arg0: BigDecimal): BigDecimal;
-        min(arg0: BigDecimal): BigDecimal;
-        movePointLeft(arg0: int): BigDecimal;
-        movePointRight(arg0: int): BigDecimal;
-        multiply(arg0: BigDecimal): BigDecimal;
-        multiply(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
-        negate(): BigDecimal;
-        negate(arg0: any /*java.math.MathContext*/): BigDecimal;
-        plus(): BigDecimal;
-        plus(arg0: any /*java.math.MathContext*/): BigDecimal;
-        pow(arg0: int): BigDecimal;
-        pow(arg0: int, arg1: any /*java.math.MathContext*/): BigDecimal;
-        precision(): int;
-        remainder(arg0: BigDecimal): BigDecimal;
-        remainder(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
-        round(arg0: any /*java.math.MathContext*/): BigDecimal;
-        scale(): int;
-        scaleByPowerOfTen(arg0: int): BigDecimal;
-        setScale(arg0: int): BigDecimal;
-        setScale(arg0: int, arg1: any /*java.math.RoundingMode*/): BigDecimal;
-        setScale(arg0: int, arg1: int): BigDecimal;
-        shortValue(): any /*short*/;
-        shortValueExact(): any /*short*/;
-        signum(): int;
-        sqrt(arg0: any /*java.math.MathContext*/): BigDecimal;
-        static valueOf(arg0: double): BigDecimal;
-        static valueOf(arg0: long): BigDecimal;
-        static valueOf(arg0: long, arg1: int): BigDecimal;
-        stripTrailingZeros(): BigDecimal;
-        subtract(arg0: BigDecimal): BigDecimal;
-        subtract(arg0: BigDecimal, arg1: any /*java.math.MathContext*/): BigDecimal;
-        toBigInteger(): any /*java.math.BigInteger*/;
-        toBigIntegerExact(): any /*java.math.BigInteger*/;
-        toEngineeringString(): string;
-        toPlainString(): string;
-        toString(): string;
-        ulp(): BigDecimal;
-        unscaledValue(): any /*java.math.BigInteger*/;
-
-    } // end BigDecimal
-
-} // end namespace java.math
-declare namespace java.time.temporal {
-
-    interface TemporalField {
-
-        adjustInto<R>(arg0: R, arg1: long): R;
-        getBaseUnit(): any /*java.time.temporal.TemporalUnit*/;
-        getDisplayName(arg0: java.util.Locale): string;
-        getFrom(arg0: any /*java.time.temporal.TemporalAccessor*/): long;
-        getRangeUnit(): any /*java.time.temporal.TemporalUnit*/;
-        isDateBased(): boolean;
-        isSupportedBy(arg0: any /*java.time.temporal.TemporalAccessor*/): boolean;
-        isTimeBased(): boolean;
-        range(): any /*java.time.temporal.ValueRange*/;
-        rangeRefinedBy(arg0: any /*java.time.temporal.TemporalAccessor*/): any /*java.time.temporal.ValueRange*/;
-        resolve(arg0: java.util.Map<TemporalField, long | null>, arg1: any /*java.time.temporal.TemporalAccessor*/, arg2: any /*java.time.format.ResolverStyle*/): any /*java.time.temporal.TemporalAccessor*/;
-        toString(): string;
-
-    } // end TemporalField
-
-    interface Temporal/* extends TemporalAccessor*/ {
-
-        get(arg0: TemporalField): int;
-        getLong(arg0: TemporalField): long;
-        isSupported(arg0: TemporalField): boolean;
-        isSupported(arg0: any /*java.time.temporal.TemporalUnit*/): boolean;
-        minus(arg0: any /*java.time.temporal.TemporalAmount*/): Temporal;
-        minus(arg0: long, arg1: any /*java.time.temporal.TemporalUnit*/): Temporal;
-        plus(arg0: any /*java.time.temporal.TemporalAmount*/): Temporal;
-        plus(arg0: long, arg1: any /*java.time.temporal.TemporalUnit*/): Temporal;
-        query<R>(arg0: any /*java.time.temporal.TemporalQuery*/): R;
-        range(arg0: TemporalField): any /*java.time.temporal.ValueRange*/;
-        until(arg0: Temporal, arg1: any /*java.time.temporal.TemporalUnit*/): long;
-        with(arg0: TemporalField, arg1: long): Temporal;
-        with(arg0: any /*java.time.temporal.TemporalAdjuster*/): Temporal;
-
-    } // end Temporal
-
-} // end namespace java.time.temporal
-interface BiConsumer<T, U>/*java.util.function.BiConsumer*/ {
-
-    (arg0: T, arg1: U): void;
-    andThen?(arg0: BiConsumer<T, U>): BiConsumer<T, U>;
-
-} // end BiConsumer
-declare namespace java.time {
-
-
-
-} // end namespace java.time
-declare namespace java.util {
-
-    class Optional<T>/* extends java.lang.Object*/ {
-
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        filter(arg0: java.util.funktion.Predicate<T>): Optional<T>;
-        flatMap<U>(arg0: java.util.funktion.Func<T, Optional<U>>): Optional<U>;
-        get(): T;
-        ifPresent(arg0: java.util.funktion.Consumer<T>): void;
-        ifPresentOrElse(arg0: java.util.funktion.Consumer<T>, arg1: java.lang.Runnable): void;
-        isEmpty(): boolean;
-        isPresent(): boolean;
-        map<U>(arg0: java.util.funktion.Func<T, U>): Optional<U>;
-        or(arg0: java.util.funktion.Supplier<Optional<T>>): Optional<T>;
-        orElse(arg0: T): T;
-        orElseGet(arg0: java.util.funktion.Supplier<T>): T;
-        orElseThrow(): T;
-        orElseThrow<X>(arg0: java.util.funktion.Supplier<X>): T;
-        stream(): java.util.stream.Stream<T>;
-        toString(): string;
-
-    } // end Optional
-
-    class Collections/* extends java.lang.Object*/ {
-
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        toString(): string;
-
-    } // end Collections
-
-    interface List<E>/* extends Collection<E>*/ {
-
-        // static copyOf<E>( arg0:Collection<E> ):List<E>;
-        // static of<E>(  ):List<E>;
-        // static of<E>( ...arg0:E[] ):List<E>;
-        // static of<E>( arg0:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E ):List<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E, arg9:E ):List<E>;
-        add(arg0: E): boolean;
-        add(arg0: int, arg1: E): void;
-        addAll(arg0: Collection<E>): boolean;
-        addAll(arg0: int, arg1: Collection<E>): boolean;
-        clear(): void;
-        contains(arg0: any /*java.lang.Object*/): boolean;
-        containsAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        forEach<T>(arg0: java.util.funktion.Consumer<T>): void;
-        get(arg0: int): E;
-        indexOf(arg0: any /*java.lang.Object*/): int;
-        isEmpty(): boolean;
-        iterator(): Iterator<E>;
-        lastIndexOf(arg0: any /*java.lang.Object*/): int;
-        listIterator(): any /*java.util.ListIterator*/;
-        listIterator(arg0: int): any /*java.util.ListIterator*/;
-        parallelStream(): java.util.stream.Stream<E>;
-        remove(arg0: any /*java.lang.Object*/): boolean;
-        remove(arg0: int): E;
-        removeAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        removeIf(arg0: java.util.funktion.Predicate<E>): boolean;
-        replaceAll(arg0: java.util.funktion.UnaryOperator<E>): void;
-        retainAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        set(arg0: int, arg1: E): E;
-        size(): int;
-        sort(arg0: any /*java.util.Comparator*/): void;
-        spliterator(): any /*java.util.Spliterator*/;
-        stream(): java.util.stream.Stream<E>;
-        subList(arg0: int, arg1: int): List<E>;
-        toArray(): [any /*java.lang.Object*/];
-        toArray<T>(arg0: [T]): [T];
-        toArray<T>(arg0: any /*java.util.function.IntFunction*/): [T];
-
-    } // end List
-
-} // end namespace java.util
-
-/**
- * Use function with k because it is reserved
- */
-declare namespace java.util.funktion {
-    interface Consumer<T>/*java.util.function.Consumer*/ {
-
-        (arg0: T): void;
-        andThen?(arg0: Consumer<T>): Consumer<T>;
-    
-    } // end Consumer
-    
-    interface BiPredicate<T, U>/*java.util.function.BiPredicate*/ {
-    
-        (arg0: T, arg1: U): boolean;
-        and?(arg0: BiPredicate<T, U>): BiPredicate<T, U>;
-        negate?(): BiPredicate<T, U>;
-        or?(arg0: BiPredicate<T, U>): BiPredicate<T, U>;
-    
-    } // end BiPredicate
-    interface BiFunction<T, U, R>/*java.util.function.BiFunction*/ {
-    
-        (arg0: T, arg1: U): R;
-        andThen?<V>(arg0: Func<R, V>): BiFunction<T, U, V>;
-    
-    } // end BiFunction
-
-    interface Func<T, R>/*java.util.function.Function*/ {
-
-        (arg0: T): R;
-        // static identity<T>(  ):Func<T, T>;
-        andThen?<V>(arg0: Func<R, V>): Func<T, V>;
-        compose?<V>(arg0: Func<V, T>): Func<V, R>;
-    
-    } // end Func
-    
-    interface Supplier<T>/*java.util.function.Supplier*/ {
-    
-        (): T;
-    
-    } // end Supplier
-    
-    interface Predicate<T>/*java.util.function.Predicate*/ {
-
-        (arg0: T): boolean;
-        // static isEqual<T>( arg0:any /*java.lang.Object*/ ):Predicate<T>;
-        // static not<T>( arg0:Predicate<T> ):Predicate<T>;
-        and?(arg0: Predicate<T>): Predicate<T>;
-        negate?(): Predicate<T>;
-        or?(arg0: Predicate<T>): Predicate<T>;
-      
-      } // end Predicate
-
-    interface BinaryOperator<T>/*java.util.function.BinaryOperator extends BiFunction<T, any, any>*/ {
-    
-        <R, U>(arg0: T, arg1: U): R;
-        // static maxBy<T>( arg0:any /*java.util.Comparator*/ ):BinaryOperator<T>;
-        // static minBy<T>( arg0:any /*java.util.Comparator*/ ):BinaryOperator<T>;
-        andThen?<R, U, V>(arg0: Func<R, V>): BiFunction<T, U, V>;
-    
-    } // end BinaryOperator
-
-    interface UnaryOperator<T>/*java.util.function.UnaryOperator extends Function<T, any>*/ {
-
-        <R>(arg0: T): R;
-        // static identity<T>(  ):UnaryOperator<T>;
-        andThen?<R, V>(arg0: java.util.funktion.Func<R, V>): java.util.funktion.Func<T, V>;
-        compose?<R, V>(arg0: java.util.funktion.Func<V, T>): java.util.funktion.Func<V, R>;
-      
-      } // end UnaryOperator
-}
-
-
-
-declare namespace java.util {
-
-    interface Set<E>/* extends Collection<E>*/ {
-
-        // static copyOf<E>( arg0:Collection<E> ):Set<E>;
-        // static of<E>(  ):Set<E>;
-        // static of<E>( ...arg0:E[] ):Set<E>;
-        // static of<E>( arg0:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E ):Set<E>;
-        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E, arg9:E ):Set<E>;
-        add(arg0: E): boolean;
-        addAll(arg0: Collection<E>): boolean;
-        clear(): void;
-        contains(arg0: any /*java.lang.Object*/): boolean;
-        containsAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        forEach<T>(arg0: java.util.funktion.Consumer<T>): void;
-        isEmpty(): boolean;
-        iterator(): Iterator<E>;
-        parallelStream(): java.util.stream.Stream<E>;
-        remove(arg0: any /*java.lang.Object*/): boolean;
-        removeAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        removeIf(arg0: java.util.funktion.Predicate<E>): boolean;
-        retainAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
-        size(): int;
-        spliterator(): any /*java.util.Spliterator*/;
-        stream(): java.util.stream.Stream<E>;
-        toArray(): [any /*java.lang.Object*/];
-        toArray<T>(arg0: [T]): [T];
-        toArray<T>(arg0: any /*java.util.function.IntFunction*/): [T];
-
-    } // end Set
-
-} // end namespace java.util
-
-declare namespace java.util.stream {
-
-    class Collectors/* extends java.lang.Object*/ {
-
-        equals(arg0: any /*java.lang.Object*/): boolean;
-        toString(): string;
-    
-      } // end Collectors
-
-    interface Stream<T>/* extends BaseStream<T, any>*/ {
-
-        allMatch(arg0: java.util.funktion.Predicate<T>): boolean;
-        anyMatch(arg0: java.util.funktion.Predicate<T>): boolean;
-        close(): void;
-        collect<R>(arg0: java.util.funktion.Supplier<R>, arg1: BiConsumer<R, T>, arg2: BiConsumer<R, R>): R;
-        collect<R>(arg0: any /*java.util.stream.Collector*/): R;
-        count(): long;
-        distinct(): Stream<T>;
-        dropWhile(arg0: java.util.funktion.Predicate<T>): Stream<T>;
-        filter(arg0: java.util.funktion.Predicate<T>): Stream<T>;
-        findAny(): java.util.Optional<T>;
-        findFirst(): java.util.Optional<T>;
-        flatMap<R>(arg0: java.util.funktion.Func<T, Stream<R>>): Stream<R>;
-        flatMapToDouble(arg0: java.util.funktion.Func<T, any /*java.util.stream.DoubleStream*/>): any /*java.util.stream.DoubleStream*/;
-        flatMapToInt(arg0: java.util.funktion.Func<T, any /*java.util.stream.IntStream*/>): any /*java.util.stream.IntStream*/;
-        flatMapToLong(arg0: java.util.funktion.Func<T, any /*java.util.stream.LongStream*/>): any /*java.util.stream.LongStream*/;
-        forEach(arg0: java.util.funktion.Consumer<T>): void;
-        forEachOrdered(arg0: java.util.funktion.Consumer<T>): void;
-        isParallel(): boolean;
-        iterator(): java.util.Iterator<T>;
-        limit(arg0: long): Stream<T>;
-        map<R>(arg0: java.util.funktion.Func<T, R>): Stream<R>;
-        mapToDouble(arg0: any /*java.util.function.ToDoubleFunction*/): any /*java.util.stream.DoubleStream*/;
-        mapToInt(arg0: any /*java.util.function.ToIntFunction*/): any /*java.util.stream.IntStream*/;
-        mapToLong(arg0: any /*java.util.function.ToLongFunction*/): any /*java.util.stream.LongStream*/;
-        max(arg0: any /*java.util.Comparator*/): java.util.Optional<T>;
-        min(arg0: any /*java.util.Comparator*/): java.util.Optional<T>;
-        noneMatch(arg0: java.util.funktion.Predicate<T>): boolean;
-        onClose<S>(arg0: java.lang.Runnable): S;
-        parallel<S>(): S;
-        peek(arg0: java.util.funktion.Consumer<T>): Stream<T>;
-        reduce(arg0: java.util.funktion.BinaryOperator<T>): java.util.Optional<T>;
-        reduce(arg0: T, arg1: java.util.funktion.BinaryOperator<T>): T;
-        reduce<U>(arg0: U, arg1: java.util.funktion.BiFunction<U, T, U>, arg2: java.util.funktion.BinaryOperator<U>): U;
-        sequential<S>(): S;
-        skip(arg0: long): Stream<T>;
-        sorted(): Stream<T>;
-        sorted(arg0: any /*java.util.Comparator*/): Stream<T>;
-        spliterator(): any /*java.util.Spliterator*/;
-        takeWhile(arg0: java.util.funktion.Predicate<T>): Stream<T>;
-        toArray(): [any /*java.lang.Object*/];
-        toArray<A>(arg0: any /*java.util.function.IntFunction*/): [A];
-        unordered<S>(): S;
-
-    } // end Stream
-
-} // end namespace java.util.stream
-
 declare namespace java.time.chrono {
 
     interface Chronology/* extends java.lang.Comparable<any>*/ {
@@ -1151,3 +718,426 @@ declare namespace java.time.chrono {
     } // end ChronoLocalDateTime
 
 } // end namespace java.time.chrono
+
+declare namespace java.time.temporal {
+
+    interface TemporalField {
+
+        adjustInto<R>(arg0: R, arg1: long): R;
+        getBaseUnit(): any /*java.time.temporal.TemporalUnit*/;
+        getDisplayName(arg0: java.util.Locale): string;
+        getFrom(arg0: any /*java.time.temporal.TemporalAccessor*/): long;
+        getRangeUnit(): any /*java.time.temporal.TemporalUnit*/;
+        isDateBased(): boolean;
+        isSupportedBy(arg0: any /*java.time.temporal.TemporalAccessor*/): boolean;
+        isTimeBased(): boolean;
+        range(): any /*java.time.temporal.ValueRange*/;
+        rangeRefinedBy(arg0: any /*java.time.temporal.TemporalAccessor*/): any /*java.time.temporal.ValueRange*/;
+        resolve(arg0: java.util.Map<TemporalField, long | null>, arg1: any /*java.time.temporal.TemporalAccessor*/, arg2: any /*java.time.format.ResolverStyle*/): any /*java.time.temporal.TemporalAccessor*/;
+        toString(): string;
+
+    } // end TemporalField
+
+    interface Temporal/* extends TemporalAccessor*/ {
+
+        get(arg0: TemporalField): int;
+        getLong(arg0: TemporalField): long;
+        isSupported(arg0: TemporalField): boolean;
+        isSupported(arg0: any /*java.time.temporal.TemporalUnit*/): boolean;
+        minus(arg0: any /*java.time.temporal.TemporalAmount*/): Temporal;
+        minus(arg0: long, arg1: any /*java.time.temporal.TemporalUnit*/): Temporal;
+        plus(arg0: any /*java.time.temporal.TemporalAmount*/): Temporal;
+        plus(arg0: long, arg1: any /*java.time.temporal.TemporalUnit*/): Temporal;
+        query<R>(arg0: any /*java.time.temporal.TemporalQuery*/): R;
+        range(arg0: TemporalField): any /*java.time.temporal.ValueRange*/;
+        until(arg0: Temporal, arg1: any /*java.time.temporal.TemporalUnit*/): long;
+        with(arg0: TemporalField, arg1: long): Temporal;
+        with(arg0: any /*java.time.temporal.TemporalAdjuster*/): Temporal;
+
+    } // end Temporal
+
+} // end namespace java.time.temporal
+
+declare namespace java.util {
+
+    class Optional<T>/* extends java.lang.Object*/ {
+
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        filter(arg0: java.util.funktion.Predicate<T>): Optional<T>;
+        flatMap<U>(arg0: java.util.funktion.Func<T, Optional<U>>): Optional<U>;
+        get(): T;
+        ifPresent(arg0: java.util.funktion.Consumer<T>): void;
+        ifPresentOrElse(arg0: java.util.funktion.Consumer<T>, arg1: java.lang.Runnable): void;
+        isEmpty(): boolean;
+        isPresent(): boolean;
+        map<U>(arg0: java.util.funktion.Func<T, U>): Optional<U>;
+        or(arg0: java.util.funktion.Supplier<Optional<T>>): Optional<T>;
+        orElse(arg0: T): T;
+        orElseGet(arg0: java.util.funktion.Supplier<T>): T;
+        orElseThrow(): T;
+        orElseThrow<X>(arg0: java.util.funktion.Supplier<X>): T;
+        stream(): java.util.stream.Stream<T>;
+        toString(): string;
+
+    } // end Optional
+
+    class Collections extends java.lang.Object {
+
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        toString(): string;
+
+    } // end Collections
+
+    interface Set<E>/* extends Collection<E>*/ {
+
+        // static copyOf<E>( arg0:Collection<E> ):Set<E>;
+        // static of<E>(  ):Set<E>;
+        // static of<E>( ...arg0:E[] ):Set<E>;
+        // static of<E>( arg0:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E ):Set<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E, arg9:E ):Set<E>;
+        add(arg0: E): boolean;
+        addAll(arg0: Collection<E>): boolean;
+        clear(): void;
+        contains(arg0: any /*java.lang.Object*/): boolean;
+        containsAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        forEach<T>(arg0: java.util.funktion.Consumer<T>): void;
+        isEmpty(): boolean;
+        iterator(): Iterator<E>;
+        parallelStream(): java.util.stream.Stream<E>;
+        remove(arg0: any /*java.lang.Object*/): boolean;
+        removeAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        removeIf(arg0: java.util.funktion.Predicate<E>): boolean;
+        retainAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        size(): int;
+        spliterator(): any /*java.util.Spliterator*/;
+        stream(): java.util.stream.Stream<E>;
+        toArray(): [any /*java.lang.Object*/];
+        toArray<T>(arg0: [T]): [T];
+        toArray<T>(arg0: any /*java.util.function.IntFunction*/): [T];
+
+    } // end Set
+
+    interface List<E>/* extends Collection<E>*/ {
+
+        // static copyOf<E>( arg0:Collection<E> ):List<E>;
+        // static of<E>(  ):List<E>;
+        // static of<E>( ...arg0:E[] ):List<E>;
+        // static of<E>( arg0:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E ):List<E>;
+        // static of<E>( arg0:E, arg1:E, arg2:E, arg3:E, arg4:E, arg5:E, arg6:E, arg7:E, arg8:E, arg9:E ):List<E>;
+        add(arg0: E): boolean;
+        add(arg0: int, arg1: E): void;
+        addAll(arg0: Collection<E>): boolean;
+        addAll(arg0: int, arg1: Collection<E>): boolean;
+        clear(): void;
+        contains(arg0: any /*java.lang.Object*/): boolean;
+        containsAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        forEach<T>(arg0: java.util.funktion.Consumer<T>): void;
+        get(arg0: int): E;
+        indexOf(arg0: any /*java.lang.Object*/): int;
+        isEmpty(): boolean;
+        iterator(): Iterator<E>;
+        lastIndexOf(arg0: any /*java.lang.Object*/): int;
+        listIterator(): any /*java.util.ListIterator*/;
+        listIterator(arg0: int): any /*java.util.ListIterator*/;
+        parallelStream(): java.util.stream.Stream<E>;
+        remove(arg0: any /*java.lang.Object*/): boolean;
+        remove(arg0: int): E;
+        removeAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        removeIf(arg0: java.util.funktion.Predicate<E>): boolean;
+        replaceAll(arg0: java.util.funktion.UnaryOperator<E>): void;
+        retainAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        set(arg0: int, arg1: E): E;
+        size(): int;
+        sort(arg0: any /*java.util.Comparator*/): void;
+        spliterator(): any /*java.util.Spliterator*/;
+        stream(): java.util.stream.Stream<E>;
+        subList(arg0: int, arg1: int): List<E>;
+        toArray(): [any /*java.lang.Object*/];
+        toArray<T>(arg0: [T]): [T];
+        toArray<T>(arg0: any /*java.util.function.IntFunction*/): [T];
+
+    } // end List
+
+
+    interface RandomAccess { }
+
+    interface Iterator<E> {
+
+        forEachRemaining(arg0: java.util.funktion.Consumer<E>): void;
+        hasNext(): boolean;
+        next(): E;
+        remove(): void;
+
+    } // end Iterator
+
+    interface Collection<E> extends java.lang.Iterable<E> {
+
+        add(arg0: E): boolean;
+        addAll(arg0: Collection<E>): boolean;
+        clear(): void;
+        contains(arg0: any /*java.lang.Object*/): boolean;
+        containsAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        forEach<T>(arg0: java.util.funktion.Consumer<T>): void;
+        isEmpty(): boolean;
+        iterator(): Iterator<E>;
+        parallelStream(): java.util.stream.Stream<E>;
+        remove(arg0: any /*java.lang.Object*/): boolean;
+        removeAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        removeIf(arg0: java.util.funktion.Predicate<E>): boolean;
+        retainAll(arg0: Collection<any /*java.lang.Object*/>): boolean;
+        size(): int;
+        spliterator(): any /*java.util.Spliterator*/;
+        stream(): java.util.stream.Stream<E>;
+        toArray(): [any /*java.lang.Object*/];
+        toArray<T>(arg0: [T]): [T];
+        toArray<T>(arg0: any /*java.util.function.IntFunction*/): [T];
+    
+      } // end Collection
+
+    interface Map<K, V> {
+
+        // static copyOf<K,V>( arg0:Map<K, V> ):Map<K, V>;
+        // static entry<K,V>( arg0:K, arg1:V ):any /*java.util.Map$Entry*/;
+        // static of<K,V>(  ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V, arg14:K, arg15:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V, arg14:K, arg15:V, arg16:K, arg17:V ):Map<K, V>;
+        // static of<K,V>( arg0:K, arg1:V, arg2:K, arg3:V, arg4:K, arg5:V, arg6:K, arg7:V, arg8:K, arg9:V, arg10:K, arg11:V, arg12:K, arg13:V, arg14:K, arg15:V, arg16:K, arg17:V, arg18:K, arg19:V ):Map<K, V>;
+        // static ofEntries<K,V>( ...arg0:any /*java.util.Map$Entry*/[] ):Map<K, V>;
+        clear(): void;
+        compute(arg0: K, arg1: java.util.funktion.BiFunction<K, V, V>): V;
+        computeIfAbsent(arg0: K, arg1: java.util.funktion.Func<K, V>): V;
+        computeIfPresent(arg0: K, arg1: java.util.funktion.BiFunction<K, V, V>): V;
+        containsKey(arg0: any /*java.lang.Object*/): boolean;
+        containsValue(arg0: any /*java.lang.Object*/): boolean;
+        entrySet(): Set<any /*java.util.Map$Entry*/>;
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        forEach(arg0: java.util.funktion.BiConsumer<K, V>): void;
+        get(arg0: any /*java.lang.Object*/): V;
+        getOrDefault(arg0: any /*java.lang.Object*/, arg1: V): V;
+        isEmpty(): boolean;
+        keySet(): Set<K>;
+        merge(arg0: K, arg1: V, arg2: java.util.funktion.BiFunction<V, V, V>): V;
+        put(arg0: K, arg1: V): V;
+        putAll(arg0: Map<K, V>): void;
+        putIfAbsent(arg0: K, arg1: V): V;
+        remove(arg0: any /*java.lang.Object*/): V;
+        remove(arg0: any /*java.lang.Object*/, arg1: any /*java.lang.Object*/): boolean;
+        replace(arg0: K, arg1: V): V;
+        replace(arg0: K, arg1: V, arg2: V): boolean;
+        replaceAll(arg0: java.util.funktion.BiFunction<K, V, V>): void;
+        size(): int;
+        values(): Collection<V>;
+
+    } // end Map
+
+    class Locale extends java.lang.Object implements java.lang.Cloneable, java.io.Serializable {
+
+        clone(): any /*java.lang.Object*/;
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        getCountry(): string;
+        getDisplayCountry(): string;
+        getDisplayCountry(arg0: Locale): string;
+        getDisplayLanguage(): string;
+        getDisplayLanguage(arg0: Locale): string;
+        getDisplayName(): string;
+        getDisplayName(arg0: Locale): string;
+        getDisplayScript(): string;
+        getDisplayScript(arg0: Locale): string;
+        getDisplayVariant(): string;
+        getDisplayVariant(arg0: Locale): string;
+        getExtension(arg0: any /*char*/): string;
+        getExtensionKeys(): Set<any /*java.lang.Character*/>;
+        getISO3Country(): string;
+        getISO3Language(): string;
+        getLanguage(): string;
+        getScript(): string;
+        getUnicodeLocaleAttributes(): Set<string>;
+        getUnicodeLocaleKeys(): Set<string>;
+        getUnicodeLocaleType(arg0: string): string;
+        getVariant(): string;
+        hasExtensions(): boolean;
+        static filter(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<Locale>): List<Locale>;
+        static filter(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<Locale>, arg2: any /*java.util.Locale$FilteringMode*/): List<Locale>;
+        static filterTags(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<string>): List<string>;
+        static filterTags(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<string>, arg2: any /*java.util.Locale$FilteringMode*/): List<string>;
+        static forLanguageTag(arg0: string): Locale;
+        static getAvailableLocales(): [Locale];
+        static getDefault(): Locale;
+        static getDefault(arg0: any /*java.util.Locale$Category*/): Locale;
+        static getISOCountries(): [string];
+        static getISOCountries(arg0: any /*java.util.Locale$IsoCountryCode*/): Set<string>;
+        static getISOLanguages(): [string];
+        static lookup(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<Locale>): Locale;
+        static lookupTag(arg0: List<any /*java.util.Locale$LanguageRange*/>, arg1: Collection<string>): string;
+        static setDefault(arg0: Locale): void;
+        static setDefault(arg0: any /*java.util.Locale$Category*/, arg1: Locale): void;
+        stripExtensions(): Locale;
+        toLanguageTag(): string;
+        toString(): string;
+
+    } // end Locale
+
+} // end namespace java.util
+
+/**
+ * Use function with k because it is reserved
+ */
+declare namespace java.util.funktion {
+    interface Consumer<T>/*java.util.function.Consumer*/ {
+
+        (arg0: T): void;
+        andThen?(arg0: Consumer<T>): Consumer<T>;
+    
+    } // end Consumer
+    
+    interface BiPredicate<T, U>/*java.util.function.BiPredicate*/ {
+    
+        (arg0: T, arg1: U): boolean;
+        and?(arg0: BiPredicate<T, U>): BiPredicate<T, U>;
+        negate?(): BiPredicate<T, U>;
+        or?(arg0: BiPredicate<T, U>): BiPredicate<T, U>;
+    
+    } // end BiPredicate
+
+    interface BiConsumer<T, U>/*java.util.function.BiConsumer*/ {
+
+        (arg0: T, arg1: U): void;
+        andThen?(arg0: BiConsumer<T, U>): BiConsumer<T, U>;
+    
+    } // end BiConsumer
+
+    interface BiFunction<T, U, R>/*java.util.function.BiFunction*/ {
+    
+        (arg0: T, arg1: U): R;
+        andThen?<V>(arg0: Func<R, V>): BiFunction<T, U, V>;
+    
+    } // end BiFunction
+
+    interface Func<T, R>/*java.util.function.Function*/ {
+
+        (arg0: T): R;
+        // static identity<T>(  ):Func<T, T>;
+        andThen?<V>(arg0: Func<R, V>): Func<T, V>;
+        compose?<V>(arg0: Func<V, T>): Func<V, R>;
+    
+    } // end Func
+    
+    interface Supplier<T>/*java.util.function.Supplier*/ {
+    
+        (): T;
+    
+    } // end Supplier
+    
+    interface Predicate<T>/*java.util.function.Predicate*/ {
+
+        (arg0: T): boolean;
+        // static isEqual<T>( arg0:any /*java.lang.Object*/ ):Predicate<T>;
+        // static not<T>( arg0:Predicate<T> ):Predicate<T>;
+        and?(arg0: Predicate<T>): Predicate<T>;
+        negate?(): Predicate<T>;
+        or?(arg0: Predicate<T>): Predicate<T>;
+      
+      } // end Predicate
+
+    interface BinaryOperator<T>/*java.util.function.BinaryOperator extends BiFunction<T, any, any>*/ {
+    
+        <R, U>(arg0: T, arg1: U): R;
+        // static maxBy<T>( arg0:any /*java.util.Comparator*/ ):BinaryOperator<T>;
+        // static minBy<T>( arg0:any /*java.util.Comparator*/ ):BinaryOperator<T>;
+        andThen?<R, U, V>(arg0: Func<R, V>): BiFunction<T, U, V>;
+    
+    } // end BinaryOperator
+
+    interface UnaryOperator<T>/*java.util.function.UnaryOperator extends Function<T, any>*/ {
+
+        <R>(arg0: T): R;
+        // static identity<T>(  ):UnaryOperator<T>;
+        andThen?<R, V>(arg0: java.util.funktion.Func<R, V>): java.util.funktion.Func<T, V>;
+        compose?<R, V>(arg0: java.util.funktion.Func<V, T>): java.util.funktion.Func<V, R>;
+      
+      } // end UnaryOperator
+}
+
+declare namespace java.util.stream {
+
+    class Collectors/* extends java.lang.Object*/ {
+
+        equals(arg0: any /*java.lang.Object*/): boolean;
+        toString(): string;
+    
+      } // end Collectors
+
+    interface Stream<T>/* extends BaseStream<T, any>*/ {
+
+        allMatch(arg0: java.util.funktion.Predicate<T>): boolean;
+        anyMatch(arg0: java.util.funktion.Predicate<T>): boolean;
+        close(): void;
+        collect<R>(arg0: java.util.funktion.Supplier<R>, arg1: java.util.funktion.BiConsumer<R, T>, arg2: java.util.funktion.BiConsumer<R, R>): R;
+        collect<R>(arg0: any /*java.util.stream.Collector*/): R;
+        count(): long;
+        distinct(): Stream<T>;
+        dropWhile(arg0: java.util.funktion.Predicate<T>): Stream<T>;
+        filter(arg0: java.util.funktion.Predicate<T>): Stream<T>;
+        findAny(): java.util.Optional<T>;
+        findFirst(): java.util.Optional<T>;
+        flatMap<R>(arg0: java.util.funktion.Func<T, Stream<R>>): Stream<R>;
+        flatMapToDouble(arg0: java.util.funktion.Func<T, any /*java.util.stream.DoubleStream*/>): any /*java.util.stream.DoubleStream*/;
+        flatMapToInt(arg0: java.util.funktion.Func<T, any /*java.util.stream.IntStream*/>): any /*java.util.stream.IntStream*/;
+        flatMapToLong(arg0: java.util.funktion.Func<T, any /*java.util.stream.LongStream*/>): any /*java.util.stream.LongStream*/;
+        forEach(arg0: java.util.funktion.Consumer<T>): void;
+        forEachOrdered(arg0: java.util.funktion.Consumer<T>): void;
+        isParallel(): boolean;
+        iterator(): java.util.Iterator<T>;
+        limit(arg0: long): Stream<T>;
+        map<R>(arg0: java.util.funktion.Func<T, R>): Stream<R>;
+        mapToDouble(arg0: any /*java.util.function.ToDoubleFunction*/): any /*java.util.stream.DoubleStream*/;
+        mapToInt(arg0: any /*java.util.function.ToIntFunction*/): any /*java.util.stream.IntStream*/;
+        mapToLong(arg0: any /*java.util.function.ToLongFunction*/): any /*java.util.stream.LongStream*/;
+        max(arg0: any /*java.util.Comparator*/): java.util.Optional<T>;
+        min(arg0: any /*java.util.Comparator*/): java.util.Optional<T>;
+        noneMatch(arg0: java.util.funktion.Predicate<T>): boolean;
+        onClose<S>(arg0: java.lang.Runnable): S;
+        parallel<S>(): S;
+        peek(arg0: java.util.funktion.Consumer<T>): Stream<T>;
+        reduce(arg0: java.util.funktion.BinaryOperator<T>): java.util.Optional<T>;
+        reduce(arg0: T, arg1: java.util.funktion.BinaryOperator<T>): T;
+        reduce<U>(arg0: U, arg1: java.util.funktion.BiFunction<U, T, U>, arg2: java.util.funktion.BinaryOperator<U>): U;
+        sequential<S>(): S;
+        skip(arg0: long): Stream<T>;
+        sorted(): Stream<T>;
+        sorted(arg0: any /*java.util.Comparator*/): Stream<T>;
+        spliterator(): any /*java.util.Spliterator*/;
+        takeWhile(arg0: java.util.funktion.Predicate<T>): Stream<T>;
+        toArray(): [any /*java.lang.Object*/];
+        toArray<A>(arg0: any /*java.util.function.IntFunction*/): [A];
+        unordered<S>(): S;
+
+    } // end Stream
+
+} // end namespace java.util.stream

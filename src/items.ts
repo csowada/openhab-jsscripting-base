@@ -211,8 +211,8 @@ export const stateAsNumber = (itemName: ItemNameOrItem, callback?: (value: numbe
 
   let item = getItem(itemName);
   if (item) {
-    let state = item.getState().as(DecimalType.class);
-    if (state instanceof org.openhab.core.library.types.DecimalType) {
+    let state = item.getState().as(DecimalType);
+    if (state instanceof DecimalType) {
       let v: number = state.toBigDecimal() as any as number;
 
       if (callback) {
@@ -251,7 +251,7 @@ export const statesAsNumber = (itemNames: ItemNameOrItem[], callback: (values: n
  */
 export const stateAsDateTime = (itemName: ItemNameOrItem, callback?: (value: java.time.ZonedDateTime) => void): java.time.ZonedDateTime | null => {
 
-  const dateTime = getItem(itemName)?.getStateAs(DateTimeType.static.class)?.getZonedDateTime() || null;
+  const dateTime = getItem(itemName)?.getStateAs(DateTimeType)?.getZonedDateTime() || null;
   if (dateTime && callback) {
     callback(dateTime);
   }

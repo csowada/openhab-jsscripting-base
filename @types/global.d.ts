@@ -1,3 +1,5 @@
+declare module '@runtime/JavaScriptUtils'
+
 /**
  * openHAB 3.x OSGi imports
  */
@@ -19,7 +21,7 @@ declare module '@runtime/RuleSupport' {
     export var Configuration: any // class java.lang.Class
     export var ActionBuilder: any // class java.lang.Class
     export var ModuleBuilder: any // class java.lang.Class
-    export var ruleRegistry: any // class org.openhab.core.automation.module.script.rulesupport.shared.RuleSupportRuleRegistryDelegate
+    export var ruleRegistry: org.openhab.core.automation.module.script.rulesupport.shared.RuleSupportRuleRegistryDelegate
     export var Rule: any // class java.lang.Class
     export var TriggerBuilder: any // class java.lang.Class
 }
@@ -81,13 +83,13 @@ declare module '@runtime' {
 
 
     // services
-    export var items: any // class org.openhab.core.automation.module.script.internal.defaultscope.ItemRegistryDelegate
+    export var items: org.openhab.core.automation.module.script.internal.defaultscope.ItemRegistryDelegate
     export var itemRegistry: org.openhab.core.items.ItemRegistry
     export var ir: org.openhab.core.items.ItemRegistry
     export var rules: org.openhab.core.automation.RuleRegistry
     export var things: org.openhab.core.thing.ThingRegistry
     export var events: org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent
-    export var actions: any // class org.openhab.core.automation.module.script.internal.defaultscope.ScriptThingActions
+    export var actions: org.openhab.core.automation.module.script.internal.defaultscope.ScriptThingActions
 
 
     // units

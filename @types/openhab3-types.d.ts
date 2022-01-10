@@ -9,8 +9,6 @@ declare namespace org.openhab.core.types.helper {
 
 declare namespace org.openhab.core.types {
 
-
-
   interface RefreshTypeClass {
     readonly static: RefreshTypeStatic
     readonly class: java.lang.Class<RefreshType>

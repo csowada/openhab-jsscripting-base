@@ -82,7 +82,7 @@ declare namespace org.openhab.core.automation {
   } // end Rule
 
   /** The RuleRegistry provides basic functionality for managing Rules. */
-  interface RuleRegistry extends org.openhab.core.common.registry.Registry<org.openhab.core.automation.Rule, string>  {
+  interface RuleRegistry extends org.openhab.core.common.registry.Registry<org.openhab.core.automation.Rule, string> {
 
     /** This method is used to register a Rule into the RuleRegistry. */
     add(rule: org.openhab.core.automation.Rule): org.openhab.core.automation.Rule
@@ -108,6 +108,41 @@ declare namespace org.openhab.core.automation {
 } // end namespace org.openhab.core.automation
 
 declare namespace org.openhab.core.automation.module.script.internal.defaultscope {
+
+  class ScriptThingActions {
+    constructor(thingRegistry: org.openhab.core.thing.ThingRegistry)
+    get(scope: string, thingUid: string): org.openhab.core.thing.binding.ThingActions
+  }
+
+  class ItemRegistryDelegate implements java.util.Map<string, org.openhab.core.types.State> {
+
+    constructor(itemRegistry: org.openhab.core.items.ItemRegistry)
+
+    clear(): void;
+    compute(arg0: string, arg1: java.util.funktion.BiFunction<string, types.State, types.State>): types.State;
+    computeIfAbsent(arg0: string, arg1: java.util.funktion.Func<string, types.State>): types.State;
+    computeIfPresent(arg0: string, arg1: java.util.funktion.BiFunction<string, types.State, types.State>): types.State;
+    containsKey(arg0: any): boolean;
+    containsValue(arg0: any): boolean;
+    entrySet(): java.util.Set<any>;
+    equals(arg0: any): boolean;
+    forEach(arg0: BiConsumer<string, types.State>): void;
+    get(arg0: any): types.State;
+    getOrDefault(arg0: any, arg1: types.State): types.State;
+    isEmpty(): boolean;
+    keySet(): java.util.Set<string>;
+    merge(arg0: string, arg1: types.State, arg2: java.util.funktion.BiFunction<types.State, types.State, types.State>): types.State;
+    put(arg0: string, arg1: types.State): types.State;
+    putAll(arg0: java.util.Map<string, types.State>): void;
+    putIfAbsent(arg0: string, arg1: types.State): types.State;
+    remove(arg0: any): types.State;
+    remove(arg0: any, arg1: any): boolean;
+    replace(arg0: string, arg1: types.State): types.State;
+    replace(arg0: string, arg1: types.State, arg2: types.State): boolean;
+    replaceAll(arg0: java.util.funktion.BiFunction<string, types.State, types.State>): void;
+    size(): number;
+    values(): java.util.Collection<types.State>;
+  }
 
   class ScriptBusEvent extends java.lang.Object {
 
@@ -171,6 +206,24 @@ declare namespace org.openhab.core.automation.module.script.rulesupport.shared.s
 
 declare namespace org.openhab.core.automation.module.script.rulesupport.shared {
 
+  /**
+   * The {@link RuleSupportRuleRegistryDelegate} is wrapping a {@link RuleRegistry} to provide a comfortable way to add
+   * rules to the RuleManager without worrying about the need to remove rules again. Nonetheless, using the addPermanent
+   * method it is still possible to add rules permanently.
+   */
+  class RuleSupportRuleRegistryDelegate {
+    getAll(): java.util.Collection<org.openhab.core.automation.Rule>
+    stream(): any /*Stream<Rule> */
+    get(key: string): org.openhab.core.automation.Rule | null
+    add(element: Rule): org.openhab.core.automation.Rule
+    addPermanent(element: Rule): void
+    update(element: Rule): org.openhab.core.automation.Rule | null
+    remove(key: string): org.openhab.core.automation.Rule | null
+    getByTag(tag?: string): java.util.Collection<org.openhab.core.automation.Rule>
+    removeAllAddedByScript(): void
+    getByTags(...tags: string[]): java.util.Collection<org.openhab.core.automation.Rule>
+  }
+
   class ScriptedAutomationManager extends java.lang.Object {
 
     addActionHandler(arg0: string, arg1: any /*org.openhab.core.automation.module.script.rulesupport.shared.ScriptedHandler*/): void;
@@ -230,12 +283,12 @@ declare namespace org.openhab.core.common.registry {
   /**
    * The Registry interface represents a registry for elements of the type E. The concrete sub interfaces are registered as OSGi services.
    */
-  interface Registry<E extends Identifiable<K>,K> {
+  interface Registry<E extends Identifiable<K>, K> {
     /** Adds the given element to the according ManagedProvider. */
     add(element: E): E
 
     /** This method retrieves a single element from the registry. */
-    get(key: K): E |null
+    get(key: K): E | null
 
     /** Returns a collection of all elements in the registry. */
     getAll(): java.util.Collection<E>
@@ -354,17 +407,17 @@ declare namespace org.openhab.core.items {
     /**
      * Returns the label of the item or null if no label is set.
      */
-     label: string | null
+    label: string | null
 
-        /**
-     * returns the name of the item
-     */
-         name: string
+    /**
+ * returns the name of the item
+ */
+    name: string
 
     /**
      * returns the current state of the item
      */
-     state: org.openhab.core.types.State;
+    state: org.openhab.core.types.State;
 
 
     addGroupName(arg0: string): void;
@@ -453,7 +506,7 @@ declare namespace org.openhab.core.items {
      * returns the current state of the item
      */
     state: org.openhab.core.types.State;
-    getStateAs<T>(arg0: java.lang.Class<T>): T;
+    getStateAs<T extends org.openhab.core.types.State>(typeClass: java.lang.Class<T>): T;
     getStateDescription(): org.openhab.core.types.StateDescription;
     getStateDescription(arg0: java.util.Locale): org.openhab.core.types.StateDescription;
     getTags(): java.util.Set<string>;
@@ -628,7 +681,7 @@ declare namespace org.openhab.core.thing {
 
   interface Thing extends org.openhab.core.common.registry.Identifiable<ThingUID> {
 
-  }  
+  }
 
   /** 
    * ThingRegistry tracks all Things from different ThingProviders and provides access to them.
@@ -637,23 +690,30 @@ declare namespace org.openhab.core.thing {
   interface ThingRegistry extends org.openhab.core.common.registry.Registry<Thing, ThingUID> {
 
     /** Creates a thing based on the given configuration properties */
-    createThingOfType(thingTypeUID: any /*ThingTypeUID*/, thingUID?: ThingUID, bridgeUID?: ThingUID, label?: string, configuration?: org.openhab.core.config.core.Configuration)	: Thing | null
+    createThingOfType(thingTypeUID: any /*ThingTypeUID*/, thingUID?: ThingUID, bridgeUID?: ThingUID, label?: string, configuration?: org.openhab.core.config.core.Configuration): Thing | null
 
     /** Removes the Thing specified by the given ThingUID. */
-    forceRemove(thingUID: any /*ThingUID*/) : Thing | null
+    forceRemove(thingUID: any /*ThingUID*/): Thing | null
 
     /** Returns a thing for a given UID or null if no thing was found. */
-    get(uid: any /*ThingUID*/) : Thing | null
+    get(uid: any /*ThingUID*/): Thing | null
 
     /** Returns a channel for the given channel UID or null if no channel was found */
-    getChannel(channelUID: any /* ChannelUID */) 	 : any /*Channel*/ | null
+    getChannel(channelUID: any /* ChannelUID */): any /*Channel*/ | null
 
     /** Initiates the removal process for the Thing specified by the given ThingUID. */
-    remove(thingUID: any /*ThingUID*/) : Thing | null
+    remove(thingUID: any /*ThingUID*/): Thing | null
 
     /** Updates the configuration of a thing for the given UID. */
-    updateConfiguration(thingUID: any /*ThingUID*/, configurationParameters: any /*Map<String,​Object> */): void	
+    updateConfiguration(thingUID: any /*ThingUID*/, configurationParameters: any /*Map<String,​Object> */): void
   }
+}
+
+declare namespace org.openhab.core.thing.binding {
+
+  type ThingActions = any;
+  type ThingActionsScope = any;
+  type ThingHandler = any;
 }
 
 declare namespace org.openhab.core.types {
@@ -669,7 +729,7 @@ declare namespace org.openhab.core.types {
    * time and vice versa. E.g a light can have the state ON or OFF and one can also send ON and OFF as commands to the device.
    * This duality is captured by this marker interface and allows implementing classes to be both state and command at the same time.
    */
-  interface Type {
+  interface Type extends java.lang.Object{
 
     /** Formats the value of this type according to a pattern (see Formatter). */
     format(arg0: string): string;
