@@ -1,8 +1,10 @@
 # Introduction
 
-The library is used together with openHAB 3.1. It is written in TypeScript and should help to write good rules.
+The library is used together with openHAB 3.x. It is written in TypeScript and should help to write good rules.
 
 ## Install
+
+### openHAB 3.1
 
 In your openHAB folder root.
 
@@ -12,6 +14,18 @@ In your openHAB folder root.
 
 ```bash
 cd automation/lib/javascript/personal
+npm install csowada/openhab-jsscripting-base --no-save
+```
+
+### openHAB 3.2
+
+In your openHAB folder root.
+
+* Create a folder ``automation/js``
+
+* Install library from github
+
+```bash
 npm install csowada/openhab-jsscripting-base --no-save
 ```
 
