@@ -42,7 +42,7 @@ export declare const getItems: <T extends string>(...itemNames: T[]) => ReturnIt
  * @param itemNames
  * @param callback
  */
-export declare const resolveStates: <T extends string, U extends org.openhab.core.types.State>(type: U, itemNames: T[], callback?: CallbackSpreadArray<U> | undefined) => U[];
+export declare const resolveStates: <T extends string, U extends org.openhab.core.types.State>(type: java.lang.Class<U>, itemNames: T[], callback?: CallbackSpreadArray<U> | undefined) => U[];
 /**
  *
  * @param itemName

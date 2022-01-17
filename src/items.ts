@@ -131,7 +131,7 @@ export const getItems = <T extends string>(...itemNames: T[]): ReturnItemsMap<T>
  * @param itemNames 
  * @param callback 
  */
-export const resolveStates = <T extends string, U extends org.openhab.core.types.State>(type: U, itemNames: T[], callback?: CallbackSpreadArray<U>): U[] => {
+export const resolveStates = <T extends string, U extends org.openhab.core.types.State>(type: java.lang.Class<U>, itemNames: T[], callback?: CallbackSpreadArray<U>): U[] => {
   let allFine = true;
 
   const values = itemNames.map(x => {

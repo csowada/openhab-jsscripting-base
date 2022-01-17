@@ -126,7 +126,7 @@ declare namespace org.openhab.core.automation.module.script.internal.defaultscop
     containsValue(arg0: any): boolean;
     entrySet(): java.util.Set<any>;
     equals(arg0: any): boolean;
-    forEach(arg0: BiConsumer<string, types.State>): void;
+    forEach(arg0: java.util.funktion.BiConsumer<string, types.State>): void;
     get(arg0: any): types.State;
     getOrDefault(arg0: any, arg1: types.State): types.State;
     isEmpty(): boolean;
