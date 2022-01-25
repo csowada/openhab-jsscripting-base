@@ -1,3 +1,5 @@
+import { ItemNameOrItem } from "./items";
+declare type StateOrStringOrNumber = org.openhab.core.types.State | string | number | undefined;
 /**
  *
  * @param typeString
@@ -23,9 +25,9 @@ export declare const ChannelEventTrigger: ({ channelUID, event, triggerName }: {
  * @returns
  */
 export declare const GroupStateChangeTrigger: ({ groupName, state, previousState, triggerName }: {
-    groupName: string;
-    state?: org.openhab.core.types.State | undefined;
-    previousState?: org.openhab.core.types.State | undefined;
+    groupName: ItemNameOrItem;
+    state?: StateOrStringOrNumber;
+    previousState?: StateOrStringOrNumber;
     triggerName?: string | undefined;
 }) => org.openhab.core.automation.Trigger;
 /**
@@ -35,9 +37,9 @@ export declare const GroupStateChangeTrigger: ({ groupName, state, previousState
  * @returns
  */
 export declare const GroupStateUpdateTrigger: ({ groupName, state, previousState, triggerName }: {
-    groupName: string;
-    state?: org.openhab.core.types.State | undefined;
-    previousState?: org.openhab.core.types.State | undefined;
+    groupName: ItemNameOrItem;
+    state?: StateOrStringOrNumber;
+    previousState?: StateOrStringOrNumber;
     triggerName?: string | undefined;
 }) => org.openhab.core.automation.Trigger;
 /**
@@ -54,9 +56,9 @@ export declare const GroupStateUpdateTrigger: ({ groupName, state, previousState
  * @param {String} [triggerName] the name of the trigger to create
  */
 export declare const ItemStateChangeTrigger: ({ itemName, state, oldState, triggerName }: {
-    itemName: string;
-    oldState?: org.openhab.core.types.State | undefined;
-    state?: org.openhab.core.types.State | undefined;
+    itemName: ItemNameOrItem;
+    oldState?: StateOrStringOrNumber;
+    state?: StateOrStringOrNumber;
     triggerName?: string | undefined;
 }) => org.openhab.core.automation.Trigger;
 /**
@@ -72,9 +74,9 @@ export declare const ItemStateChangeTrigger: ({ itemName, state, oldState, trigg
  * @param {String} [triggerName] the name of the trigger to create
  */
 export declare const ItemStateUpdateTrigger: ({ itemName, state, oldState, triggerName }: {
-    itemName: string;
-    oldState?: org.openhab.core.types.State | undefined;
-    state?: org.openhab.core.types.State | undefined;
+    itemName: ItemNameOrItem;
+    oldState?: StateOrStringOrNumber;
+    state?: StateOrStringOrNumber;
     triggerName?: string | undefined;
 }) => org.openhab.core.automation.Trigger;
 /**
@@ -85,11 +87,11 @@ export declare const ItemStateUpdateTrigger: ({ itemName, state, oldState, trigg
  *
  * @name ItemCommandTrigger
  * @memberof triggers
- * @param {String} itemName the name of the item to monitor for change
+ * @param {ItemNameOrItem} itemName the name of the item to monitor for change
  * @param {String} [command] the command received
  * @param {String} [triggerName] the name of the trigger to create
  */
-export declare const ItemCommandTrigger: (itemName: string, command?: org.openhab.core.types.Command | undefined, triggerName?: string | undefined) => org.openhab.core.automation.Trigger;
+export declare const ItemCommandTrigger: (itemName: ItemNameOrItem, command?: org.openhab.core.types.Command | undefined, triggerName?: string | undefined) => org.openhab.core.automation.Trigger;
 /**
  * Creates a trigger that fires on a cron schedule. The supplied cron expression defines when the trigger will fire.
  *
@@ -112,3 +114,4 @@ export declare const GenericCronTrigger: (expression: string, triggerName?: stri
  * @param {String} time the time expression defining the triggering schedule
  */
 export declare const TimeOfDayTrigger: (time: string, triggerName?: string | undefined) => org.openhab.core.automation.Trigger;
+export {};

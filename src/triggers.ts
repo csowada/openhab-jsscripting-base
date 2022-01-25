@@ -1,4 +1,7 @@
+import { getName, ItemNameOrItem } from "./items";
 import { Configuration, ModuleBuilder } from "./openhab-types";
+
+type StateOrStringOrNumber = org.openhab.core.types.State | string | number | undefined;
 
 /**
  * 
@@ -18,6 +21,19 @@ export const createTrigger = ({ typeString, name, config }: { typeString: string
     .withTypeUID(typeString)
     .withConfiguration(new Configuration(config))
     .build();
+}
+
+const getStateString = (state : StateOrStringOrNumber): string | undefined => {
+
+  if (typeof state === "undefined") {
+    return undefined;
+  } else if (typeof state === "string") {
+    return state;
+  } else if(typeof state === "number") {
+    return state.toString();
+  } else {
+    return state.toFullString();
+  }
 }
 
 // export const ChannelEventTrigger = (channel: string, event: string, triggerName: string) => createTrigger("core.ChannelEventTrigger", triggerName, {
@@ -53,11 +69,11 @@ export const ChannelEventTrigger = ({ channelUID, event, triggerName }: { channe
  * @param param0 
  * @returns 
  */
- export const GroupStateChangeTrigger = ({ groupName, state, previousState, triggerName }: { groupName: string, state?: org.openhab.core.types.State, previousState?: org.openhab.core.types.State, triggerName?: string  }) => createTrigger({
+ export const GroupStateChangeTrigger = ({ groupName, state, previousState, triggerName }: { groupName: ItemNameOrItem, state?: StateOrStringOrNumber, previousState?: StateOrStringOrNumber, triggerName?: string  }) => createTrigger({
   typeString: "core.GroupStateChangeTrigger", name: triggerName, config: {
-    groupName,
-    "state": state?.toFullString(),
-    "previousState": previousState?.toFullString()
+    groupName: getName(groupName),
+    state: getStateString(state),
+    previousState: getStateString(previousState)
   }
 });
 
@@ -67,11 +83,11 @@ export const ChannelEventTrigger = ({ channelUID, event, triggerName }: { channe
  * @param param0 
  * @returns 
  */
- export const GroupStateUpdateTrigger = ({ groupName, state, previousState, triggerName }: { groupName: string, state?: org.openhab.core.types.State, previousState?: org.openhab.core.types.State, triggerName?: string  }) => createTrigger({
+ export const GroupStateUpdateTrigger = ({ groupName, state, previousState, triggerName }: { groupName: ItemNameOrItem, state?: StateOrStringOrNumber, previousState?: StateOrStringOrNumber, triggerName?: string  }) => createTrigger({
   typeString: "core.GroupStateUpdateTrigger", name: triggerName, config: {
-    groupName,
-    "state": state?.toFullString(),
-    "previousState": previousState?.toFullString()
+    groupName: getName(groupName),
+    state: getStateString(state),
+    previousState: getStateString(previousState)
   }
 });
 
@@ -88,11 +104,11 @@ export const ChannelEventTrigger = ({ channelUID, event, triggerName }: { channe
  * @param {String} [newState] the new state of the item
  * @param {String} [triggerName] the name of the trigger to create
  */
-export const ItemStateChangeTrigger = ({ itemName, state, oldState, triggerName }: { itemName: string, oldState?: org.openhab.core.types.State, state?: org.openhab.core.types.State, triggerName?: string }) => createTrigger({
+export const ItemStateChangeTrigger = ({ itemName, state, oldState, triggerName }: { itemName: ItemNameOrItem, oldState?: StateOrStringOrNumber, state?: StateOrStringOrNumber, triggerName?: string }) => createTrigger({
   typeString: "core.ItemStateChangeTrigger", name: triggerName, config: {
-    itemName,
-    "state": state?.toFullString(),
-    "oldState": oldState?.toFullString()
+    itemName: getName(itemName),
+    state: getStateString(state),
+    oldState: getStateString(oldState)
   }
 })
 
@@ -108,11 +124,11 @@ export const ItemStateChangeTrigger = ({ itemName, state, oldState, triggerName 
  * @param {String} [state] the new state of the item
  * @param {String} [triggerName] the name of the trigger to create
  */
-export const ItemStateUpdateTrigger = ({ itemName, state, oldState, triggerName }: { itemName: string, oldState?: org.openhab.core.types.State, state?: org.openhab.core.types.State, triggerName?: string }) => createTrigger({
+export const ItemStateUpdateTrigger = ({ itemName, state, oldState, triggerName }: { itemName: ItemNameOrItem, oldState?: StateOrStringOrNumber, state?: StateOrStringOrNumber, triggerName?: string }) => createTrigger({
   typeString: "core.ItemStateUpdateTrigger", name: triggerName, config: {
-    itemName,
-    "state": state?.toFullString(),
-    "oldState": oldState?.toFullString()
+    itemName: getName(itemName),
+    state: getStateString(state),
+    oldState: getStateString(oldState)
   }
 })
 
@@ -124,14 +140,14 @@ export const ItemStateUpdateTrigger = ({ itemName, state, oldState, triggerName 
  * 
  * @name ItemCommandTrigger
  * @memberof triggers
- * @param {String} itemName the name of the item to monitor for change
+ * @param {ItemNameOrItem} itemName the name of the item to monitor for change
  * @param {String} [command] the command received
  * @param {String} [triggerName] the name of the trigger to create
  */
-export const ItemCommandTrigger = (itemName: string, command?: org.openhab.core.types.Command, triggerName?: string) => createTrigger({
+export const ItemCommandTrigger = (itemName: ItemNameOrItem, command?: org.openhab.core.types.Command, triggerName?: string) => createTrigger({
   typeString: "core.ItemCommandTrigger", name: triggerName, config: {
-    "itemName": itemName,
-    "command": command?.toFullString()
+    itemName: getName(itemName),
+    command: command?.toFullString()
   }
 })
 

@@ -1,4 +1,4 @@
-declare type ItemNameOrItem = string | org.openhab.core.items.Item;
+export declare type ItemNameOrItem = string | org.openhab.core.items.Item;
 declare type ReturnItemsMap<T extends string> = {
     [K in T]: org.openhab.core.items.Item | null;
 };
@@ -18,8 +18,27 @@ export declare const allItems: {
  * @returns
  */
 export declare const postUpdate: (item: ItemNameOrItem, value: org.openhab.core.types.State | number | string) => any | null;
+/**
+ * Sends a command to an item
+ * @param item
+ * @param value
+ * @returns
+ */
 export declare const sendCommand: (item: ItemNameOrItem, value: org.openhab.core.types.State | number | string) => any | null;
+/**
+ * Sends a command to an item if the state is not equals
+ * @param itemName
+ * @param state
+ */
+export declare const sendCommandOnChange: (itemName: ItemNameOrItem, state: org.openhab.core.types.State | number | string) => void;
 export declare const getGroupItem: (item: ItemNameOrItem, callback?: ((item: org.openhab.core.items.GroupItem, members: org.openhab.core.items.Item[]) => void) | undefined) => org.openhab.core.items.GroupItem | null;
+export declare const getGroupMembersItems: (item: ItemNameOrItem) => org.openhab.core.items.Item[];
+/**
+ * Returns the name of an Item or the item name as string
+ * @param item
+ * @returns
+ */
+export declare const getName: (item: ItemNameOrItem) => string;
 /**
  *
  * @param item

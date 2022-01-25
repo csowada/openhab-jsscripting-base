@@ -3,11 +3,16 @@ import { fromSet } from "./java-utils";
 import { getLogger } from "./logger";
 // import { DateTimeType, DecimalType, UnDefType } from "./openhab-types";
 
-type ItemNameOrItem = string | org.openhab.core.items.Item;
+export type ItemNameOrItem = string | org.openhab.core.items.Item;
 type ReturnItemsMap<T extends string> = {[K in T]: org.openhab.core.items.Item | null};
 type CallbackSpreadArray<T> = (...states: T[]) => void;
 
 const logger = getLogger("items.ts");
+
+type XXX = {
+  ABC: org.openhab.core.items.Item
+  [key: string]: org.openhab.core.items.Item
+}
 
 /**
  * Provides a proxy object to load a item via a property like 
@@ -48,6 +53,12 @@ export const postUpdate = (item: ItemNameOrItem, value: org.openhab.core.types.S
   return null;
 }
 
+/**
+ * Sends a command to an item
+ * @param item 
+ * @param value 
+ * @returns 
+ */
 export const sendCommand = (item: ItemNameOrItem, value: org.openhab.core.types.State | number | string): any | null => {
   const itm = getItem(item);
   if (itm) {
@@ -57,6 +68,19 @@ export const sendCommand = (item: ItemNameOrItem, value: org.openhab.core.types.
   }
 
   return null;
+}
+
+/**
+ * Sends a command to an item if the state is not equals
+ * @param itemName 
+ * @param state 
+ */
+export const sendCommandOnChange = (itemName: ItemNameOrItem, state: org.openhab.core.types.State | number | string) => {
+  getItem(itemName, (item) => {
+    if (!stateEquals(item, state)) {
+      sendCommand(item, state);
+    }
+  });
 }
 
 export const getGroupItem = (item: ItemNameOrItem, callback?: (item: org.openhab.core.items.GroupItem, members: org.openhab.core.items.Item[]) => void): org.openhab.core.items.GroupItem | null => {
@@ -70,6 +94,29 @@ export const getGroupItem = (item: ItemNameOrItem, callback?: (item: org.openhab
   }
   return null;
 }
+
+export const getGroupMembersItems = (item: ItemNameOrItem): org.openhab.core.items.Item[] => {
+
+  const itm = getItem(item);
+  if (itm) {
+    const groupItem = itm as org.openhab.core.items.GroupItem;
+    return fromSet(groupItem.getMembers());
+  }
+
+  return [];
+}
+
+/**
+ * Returns the name of an Item or the item name as string
+ * @param item 
+ * @returns 
+ */
+export const getName = (item: ItemNameOrItem) => {
+  if(typeof item == "object") {
+    return item.name;
+  }
+  return item;
+};
 
 /**
  * 
