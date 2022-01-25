@@ -468,6 +468,11 @@ declare namespace org.openhab.core.items {
 
   } // end StateChangeListener
 
+  interface Item2<T extends org.openhab.core.types.State> extends Item {
+    state: T;
+    getState(): T;
+  }
+
   interface Item extends org.openhab.core.common.registry.Identifiable<string> {
 
     getAcceptedCommandTypes(): java.util.List<java.lang.Class<org.openhab.core.types.Command>>;
@@ -506,7 +511,7 @@ declare namespace org.openhab.core.items {
      * returns the current state of the item
      */
     state: org.openhab.core.types.State;
-    getStateAs<T extends org.openhab.core.types.State>(typeClass: java.lang.Class<T>): T;
+    getStateAs<T extends org.openhab.core.types.State>(typeClass: java.lang.Class<T>): T|null;
     getStateDescription(): org.openhab.core.types.StateDescription;
     getStateDescription(arg0: java.util.Locale): org.openhab.core.types.StateDescription;
     getTags(): java.util.Set<string>;
