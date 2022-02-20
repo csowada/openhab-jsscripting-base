@@ -671,9 +671,21 @@ declare namespace org.openhab.core.service {
 
 } // end namespace org.openhab.core.service
 
+
+
 declare namespace org.openhab.core.thing {
 
-  class ThingUID /* extends UID */ {
+  class UID extends java.lang.Object {
+    constructor()
+    constructor(uid: string)
+    constructor(...segments: string[])
+
+    getAllSegments(): string
+    getAsString(): string
+    getBindingId(): string
+  }
+
+  class ThingUID extends UID {
     constructor(thingUID: string)
     constructor(...segments: string[])
     constructor(bindingId: string, id: string)
@@ -684,8 +696,93 @@ declare namespace org.openhab.core.thing {
     // constructor(ThingTypeUID thingTypeUID, ThingUID bridgeUID, String id)
   }
 
+  // interface ThingStatus extends java.lang.Enum<ThingStatus> {
+  //   readonly class: ThingStatus;
+  //   valueOf<ThingStatus>(arg0: java.lang.Class<ThingStatus>, arg1: string): ThingStatus;
+  //   valueOf(arg0: string): ThingStatus;
+  //   values(): ThingStatus[];
+
+  //   INITIALIZING: ThingStatus
+  //   OFFLINE: ThingStatus
+  //   ONLINE: ThingStatus
+  //   REMOVED: ThingStatus
+  //   REMOVING: ThingStatus
+  //   UNINITIALIZED: ThingStatus
+  //   UNKNOWN: ThingStatus
+  // }
+
+  type ThingStatus = "INITIALIZING" | "OFFLINE" | "ONLINE" | "REMOVED" | "REMOVING" | "UNINITIALIZED" | "UNKNOWN"
+
+  interface ThingStatusInfo extends java.lang.Object {
+
+    /** Gets the description of the status. */
+    getDescription(): string | null
+
+    /** Gets the status itself. */
+    getStatus(): ThingStatus
+
+    /** Gets the detail of the status. */
+    getStatusDetail(): any
+  }
+
+  interface Channel {
+
+    /** Returns the accepted item type. */
+    getAcceptedItemType()	: string | null;
+
+    getAutoUpdatePolicy(): any | null /*AutoUpdatePolicy*/;
+    getChannelTypeUID()	: any | null /*ChannelTypeUID*/;
+    getConfiguration(): any /*Configuration*/;
+
+    /** Returns default tags of this channel. */
+    getDefaultTags(): java.util.Set<string>;
+    getDescription(): string | null;
+    getKind(): any /*ChannelKind*/;
+    getLabel(): string | null;
+    getProperties(): java.util.Map<string, string>;
+
+    /** Returns the unique id of the channel.*/
+    getUID(): any /*ChannelUID*/;
+
+    // @Nullable String	getAcceptedItemType()	
+    
+    // @Nullable AutoUpdatePolicy	getAutoUpdatePolicy()	 
+    // @Nullable ChannelTypeUID	getChannelTypeUID()	
+    // Returns the channel type UID
+    // Configuration	getConfiguration()	
+    // Returns the channel configuration
+    // Set<String>	getDefaultTags()	
+    // Returns default tags of this channel.
+    // @Nullable String	getDescription()	
+    // Returns the description (if set).
+    // ChannelKind	getKind()	
+    // Returns the channel kind.
+    // @Nullable String	getLabel()	
+    // Returns the label (if set).
+    // Map<String,​String>	getProperties()	
+    // Returns an immutable copy of the Channel properties.
+    // ChannelUID	getUID()	
+    // Returns the unique id of the channel.
+  }
+
   interface Thing extends org.openhab.core.common.registry.Identifiable<ThingUID> {
 
+    getChannels(): java.util.List<Channel>
+
+    /** Gets the bridge UID. */
+    getBridgeUID(): ThingUID | null;
+
+    /** Returns the human readable label for this thing. */
+    getLabel(): string |null;
+
+    /** Get the physical location of the Thing. */
+    getLocation(): string | null;
+
+    /** ThingStatus - Gets the status of a thing. */
+    getStatus(): ThingStatus;
+
+    /** Returns information whether the Thing is enabled or not. */
+    isEnabled(): boolean;
   }
 
   /** 
@@ -698,19 +795,19 @@ declare namespace org.openhab.core.thing {
     createThingOfType(thingTypeUID: any /*ThingTypeUID*/, thingUID?: ThingUID, bridgeUID?: ThingUID, label?: string, configuration?: org.openhab.core.config.core.Configuration): Thing | null
 
     /** Removes the Thing specified by the given ThingUID. */
-    forceRemove(thingUID: any /*ThingUID*/): Thing | null
+    forceRemove(thingUID: ThingUID): Thing | null
 
     /** Returns a thing for a given UID or null if no thing was found. */
-    get(uid: any /*ThingUID*/): Thing | null
+    get(uid: ThingUID): Thing | null
 
     /** Returns a channel for the given channel UID or null if no channel was found */
     getChannel(channelUID: any /* ChannelUID */): any /*Channel*/ | null
 
     /** Initiates the removal process for the Thing specified by the given ThingUID. */
-    remove(thingUID: any /*ThingUID*/): Thing | null
+    remove(thingUID: ThingUID): Thing | null
 
     /** Updates the configuration of a thing for the given UID. */
-    updateConfiguration(thingUID: any /*ThingUID*/, configurationParameters: any /*Map<String,​Object> */): void
+    updateConfiguration(thingUID: ThingUID, configurationParameters: any /*Map<String,​Object> */): void
   }
 }
 
@@ -719,6 +816,36 @@ declare namespace org.openhab.core.thing.binding {
   type ThingActions = any;
   type ThingActionsScope = any;
   type ThingHandler = any;
+}
+
+declare namespace org.openhab.core.thing.events {
+  interface ThingStatusInfoChangedEvent extends org.openhab.core.events.Event{
+
+    /** Gets the old thing status info. */
+    getOldStatusInfo(): org.openhab.core.thing.ThingStatusInfo
+
+    /** Gets the thing status info. */
+    getStatusInfo(): org.openhab.core.thing.ThingStatusInfo
+
+    /** Gets the thing UID. */
+    getThingUID(): org.openhab.core.thing.ThingUID
+
+    /** Gets the event type. */
+    getType(): string
+
+  }
+}
+
+declare namespace org.openhab.core.thing.link {
+  interface ItemChannelLinkRegistry extends /*ProviderChangeListener<ItemChannelLink>,*/ org.openhab.core.common.registry.Registry<any /*ItemChannelLink*/,string> {
+
+    getBoundChannels(itemName: string):java.util.Set<any /*ChannelUID*/>
+    getBoundThings(itemName: string): java.util.Set<org.openhab.core.thing.Thing>
+
+    getLinkedItemNames(uid: UID): java.util.Set<string>
+    getLinkedItems(uid: UID): java.util.Set<org.openhab.core.items.Item>
+
+  }
 }
 
 declare namespace org.openhab.core.types {

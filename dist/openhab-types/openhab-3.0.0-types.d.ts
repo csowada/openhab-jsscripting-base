@@ -4,6 +4,7 @@ export declare const GroupItemStateChangedEvent: org.openhab.core.items.events.G
 export declare const ItemEvent: org.openhab.core.items.events.ItemEvent;
 export declare const ItemUpdatedEvent: org.openhab.core.items.events.ItemUpdatedEvent;
 export declare const ItemStateEvent: org.openhab.core.items.events.ItemStateEvent;
+export declare const ThingStatusInfoChangedEvent: org.openhab.core.thing.events.ThingStatusInfoChangedEvent;
 interface SimpleRuleStatic {
     readonly class: any;
     new (): org.openhab.core.automation.module.script.rulesupport.shared.simple.SimpleRule;

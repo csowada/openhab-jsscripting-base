@@ -487,6 +487,15 @@ declare namespace org.openhab.core.library.types {
     valueOf(arg0: string): org.openhab.core.library.types.RawType;
   }
 
+  interface QuantityType<T extends any> extends org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command, java.lang.Comparable<QuantityType<T>> {
+    doubleValue(): double;
+    floatValue(): float;
+    intValue(): int;
+    longValue(): long;
+  }
+
+
+
   /* GROUP FUNCTIONS */
 
     /*

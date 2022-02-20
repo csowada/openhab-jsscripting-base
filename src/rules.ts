@@ -1,5 +1,5 @@
 import { automationManager } from "@runtime/RuleSupport";
-import { ItemStateChangedEvent, ItemStateEvent, GroupItemStateChangedEvent, ItemCommandEvent } from "./openhab-types";
+import { ItemStateChangedEvent, ItemStateEvent, GroupItemStateChangedEvent, ItemCommandEvent, ThingStatusInfoChangedEvent } from "./openhab-types";
 
 // import { extractNewState, extractPreviousState, extractReceivedCommand, extractTriggeringItemName } from './events';
 import { toSet } from './java-utils';
@@ -14,7 +14,9 @@ type ExecuteTypeExt = (action: org.openhab.core.automation.Action, input: { [ind
     receivedCommand?: org.openhab.core.types.Command,
     newState?: org.openhab.core.types.State,
     previousState?: org.openhab.core.types.State,
-    triggeringItemName?: string
+    triggeringItemName?: string,
+
+    thingEvent?: org.openhab.core.thing.events.ThingStatusInfoChangedEvent,
   }
 ) => void;
 
@@ -53,7 +55,8 @@ export const createRule = (params: ExecuteFnType): org.openhab.core.automation.m
         receivedCommand: extractReceivedCommand(input),
         newState: extractNewState(input),
         previousState: extractPreviousState(input),
-        triggeringItemName: extractTriggeringItemName(input)
+        triggeringItemName: extractTriggeringItemName(input),
+        thingEvent: extractThingStatusInfoChangedEvent(input)
       });
     } catch (e: any) {
       console.error("------------------------------------------")
@@ -96,6 +99,15 @@ const callTypEquals = <T, U>(input: { [index: string]: any }, classType: T, cb: 
   if (event && event.class === classType) {
     return cb(event);
   }
+  return undefined;
+}
+
+
+
+const extractThingStatusInfoChangedEvent = (input: { [index: string]: any }) => {
+  let result = callTypEquals(input, ThingStatusInfoChangedEvent, (y) => y);
+  if (result) return result;
+
   return undefined;
 }
 
