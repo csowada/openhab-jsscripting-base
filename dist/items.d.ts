@@ -83,7 +83,7 @@ export declare const statesAsNumber: (itemNames: ItemNameOrItem[], callback: (va
  */
 export declare const stateAsDateTime: (itemName: ItemNameOrItem, callback?: ((value: java.time.ZonedDateTime) => void) | undefined) => java.time.ZonedDateTime | null;
 /**
- * NULL all items for a given thing
+ * Set all items to NULL for a given thing and its channels
  * @param thing
  */
 export declare const clearAllLinkedThingItems: (thing: org.openhab.core.thing.Thing) => void;

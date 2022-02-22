@@ -259,7 +259,7 @@ declare namespace org.openhab.core.library.types {
 
   interface PercentType extends DecimalType {
 
-    as<T>(arg0: java.lang.Class<T>): T;
+    // as<T>(arg0: java.lang.Class<T>): T;
     byteValue(): any /*byte*/;
     compareTo(arg0: DecimalType): int;
     doubleValue(): double;
@@ -371,25 +371,26 @@ declare namespace org.openhab.core.library.types {
    * *********************************************************
    */
 
-  interface HostClass<CLASS = any, STATIC = any> {
+  // interface HostClass<CLASS = any, STATIC = any> {
 
-    new(value?: double | string | java.math.BigDecimal): DecimalType;
+  //   new(value?: double | string | java.math.BigDecimal): DecimalType;
 
-    readonly static: STATIC
+  //   readonly static: STATIC
 
-    readonly class: java.lang.Class<CLASS>
+  //   readonly class: java.lang.Class<CLASS>
+  // }
+
+  interface DecimalTypeClass extends DecimalTypeConstructor /*extends HostClass<DecimalType, DecimalTypeClass>*/ {
+    readonly static: DecimalTypeStatic
+    readonly class: java.lang.Class<DecimalType>
   }
 
-  interface DecimalTypeClass extends HostClass {
-
+  interface DecimalTypeConstructor {
     new(value: double): DecimalType;
     // new(arg0: long): DecimalType;
     new(value: java.math.BigDecimal): DecimalType;
     new(): DecimalType;
     new(value: string): DecimalType;
-
-    // readonly static: DecimalTypeStatic
-    // readonly class: java.lang.Class<DecimalType>
   }
 
   interface DecimalType extends org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command, java.lang.Comparable<DecimalType> {

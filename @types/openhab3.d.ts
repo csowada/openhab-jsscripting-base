@@ -871,7 +871,8 @@ declare namespace org.openhab.core.types {
   }
 
   interface State extends Type {
-    as<T>(target: java.lang.Class<T>): T;
+    // as<T>(target: java.lang.Class<T>): T;
+    as<T extends org.openhab.core.types.State>(typeClass: java.lang.Class<T>): T|null;
   }
 
   interface CommandDescription {

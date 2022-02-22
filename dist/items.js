@@ -263,7 +263,7 @@ const stateAsDateTime = (itemName, callback) => {
 };
 exports.stateAsDateTime = stateAsDateTime;
 /**
- * NULL all items for a given thing
+ * Set all items to NULL for a given thing and its channels
  * @param thing
  */
 const clearAllLinkedThingItems = (thing) => {

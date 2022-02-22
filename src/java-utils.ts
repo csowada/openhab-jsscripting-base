@@ -9,9 +9,9 @@ export const toSet = (values: string[]) => {
   return set;
 }
 
-export const fromSet = <T>(xxxx: java.util.Set<T>): T[] => {
+export const fromSet = <T>(set: java.util.Set<T>): T[] => {
   const result: T[] = []
-  xxxx.forEach((entry: T) => {
+  set.forEach((entry: T) => {
     result.push(entry);
   });
   return result;
