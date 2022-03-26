@@ -16,3 +16,13 @@ export const fromSet = <T>(xxxx: java.util.Set<T>): T[] => {
   });
   return result;
 }
+
+export const toMap = (values: {[key:string]:string}) => {
+  const HashMap: any = Java.type('java.util.HashMap');
+  const map: java.util.Map<string, string> = new HashMap();
+  Object.keys(values).forEach(key => {
+    map.put(key, values[key]);
+  });
+  // values.forEach(x => set.put());
+  return map;
+}

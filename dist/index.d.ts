@@ -11,3 +11,4 @@ export * from "./openhab-types";
 export * from "./persistance";
 export * as cache from "./cache";
 export * as timers from "./timers2";
+export * from "./msgraph";

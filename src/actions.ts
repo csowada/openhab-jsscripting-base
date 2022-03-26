@@ -3,7 +3,7 @@ import { getLogger } from "./logger";
 const logger = getLogger("actions.ts");
 
 const ScriptServiceUtil: any = Java.type("org.openhab.core.model.script.ScriptServiceUtil");
-const HTTP: any = Java.type("org.openhab.core.model.script.actions.HTTP");
+const HTTP: HttpAction = Java.type("org.openhab.core.model.script.actions.HTTP");
 
 interface Action {
 
@@ -17,6 +17,18 @@ interface SendMailAction extends Action {
   sendHtmlMail(recipient: string, subject: string, htmlContent: string): boolean;
   sendHtmlMail(recipient: string, subject: string, htmlContent: string, url: string): boolean;
   sendHtmlMail(recipient: string, subject: string, htmlContent: string, urls: string[]): boolean;
+}
+
+export interface HttpAction extends Action {
+  sendHttpGetRequest(url: string): string
+  sendHttpGetRequest(url: string, timeout: int): string
+  sendHttpGetRequest(url: string, headers: java.util.Map<string, string>, timeout: int): string
+
+  sendHttpPostRequest(url: string): string
+  sendHttpPostRequest(url: string, timeout: int): string
+  sendHttpPostRequest(url: string, contentType: string, content: string): string
+  sendHttpPostRequest(url: string, contentType: string, content: string, timeout: int): string
+  sendHttpPostRequest(url: string, contentType: string, content: string, headers: java.util.Map<string, string>, timeout: int): string
 }
 
 interface MqttAction extends Action {
