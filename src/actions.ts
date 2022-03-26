@@ -29,6 +29,8 @@ export interface HttpAction extends Action {
   sendHttpPostRequest(url: string, contentType: string, content: string): string
   sendHttpPostRequest(url: string, contentType: string, content: string, timeout: int): string
   sendHttpPostRequest(url: string, contentType: string, content: string, headers: java.util.Map<string, string>, timeout: int): string
+
+  sendHttpPostRequest(url: string, contentType: string, content: string, headers: {[key: string]: string}, timeout: int): string
 }
 
 interface MqttAction extends Action {
