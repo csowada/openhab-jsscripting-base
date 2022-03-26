@@ -12,9 +12,9 @@ const toSet = (values) => {
     return set;
 };
 exports.toSet = toSet;
-const fromSet = (xxxx) => {
+const fromSet = (set) => {
     const result = [];
-    xxxx.forEach((entry) => {
+    set.forEach((entry) => {
         result.push(entry);
     });
     return result;

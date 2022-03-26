@@ -6,6 +6,7 @@ declare type ExecuteTypeExt = (action: org.openhab.core.automation.Action, input
     newState?: org.openhab.core.types.State;
     previousState?: org.openhab.core.types.State;
     triggeringItemName?: string;
+    thingEvent?: org.openhab.core.thing.events.ThingStatusInfoChangedEvent;
 }) => void;
 declare type ExecuteFnType = {
     /** Execution function on trigger events */

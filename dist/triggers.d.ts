@@ -114,4 +114,51 @@ export declare const GenericCronTrigger: (expression: string, triggerName?: stri
  * @param {String} time the time expression defining the triggering schedule
  */
 export declare const TimeOfDayTrigger: (time: string, triggerName?: string | undefined) => org.openhab.core.automation.Trigger;
+/**
+ * Creates a trigger that fires upon an Thing status updating
+ *
+ * @example
+ * ThingStatusUpdateTrigger('some:thing:uuid','OFFLINE')
+ *
+ * @name ThingStatusUpdateTrigger
+ * @memberof triggers
+ * @param {String} thingUID the name of the thing to monitor for a status updating
+ * @param {String} [status] the optional status to monitor for
+ * @param {String} [triggerName] the name of the trigger to create
+ */
+export declare const ThingStatusUpdateTrigger: (thingUID: string, status?: string | undefined, triggerName?: string | undefined) => org.openhab.core.automation.Trigger;
+/**
+* Creates a trigger that fires upon an Thing status changing
+*
+* @example
+* ThingStatusChangeTrigger('some:thing:uuid','ONLINE','OFFLINE')
+*
+* @name ThingStatusChangeTrigger
+* @memberof triggers
+* @param {String} thingUID the name of the thing to monitor for a status change
+* @param {String} [status] the optional status to monitor for
+* @param {String} [previousStatus] the optional previous state to monitor from
+* @param {String} [triggerName] the optional name of the trigger to create
+*/
+export declare const ThingStatusChangeTrigger: (thingUID: string, status?: string | undefined, previousStatus?: string | undefined, triggerName?: string | undefined) => org.openhab.core.automation.Trigger;
+/**
+ * Creates a trigger that fires if a given start level is reached by the system
+ *
+ * @example
+ * SystemStartlevelTrigger(40)  //Rules loaded
+ * ...
+ * SystemStartlevelTrigger(50)  //Rule engine started
+ * ...
+ * SystemStartlevelTrigger(70)  //User interfaces started
+ * ...
+ * SystemStartlevelTrigger(80)  //Things initialized
+ * ...
+ * SystemStartlevelTrigger(100) //Startup Complete
+ *
+ * @name SystemStartlevelTrigger
+ * @memberof triggers
+ * @param {String} startlevel the system start level to be triggered on
+ * @param {String} [triggerName] the name of the trigger to create
+ */
+export declare const SystemStartlevelTrigger: (startlevel: string, triggerName?: string | undefined) => org.openhab.core.automation.Trigger;
 export {};

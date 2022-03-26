@@ -1,7 +1,7 @@
 import { events, ir, DateTimeType, DecimalType, UNDEF, NULL} from "@runtime";
+import { getItemChannelLinkRegistry } from "./things";
 import { fromSet } from "./java-utils";
 import { getLogger } from "./logger";
-// import { DateTimeType, DecimalType, UnDefType } from "./openhab-types";
 
 export type ItemNameOrItem = string | org.openhab.core.items.Item;
 type ReturnItemsMap<T extends string> = {[K in T]: org.openhab.core.items.Item | null};
@@ -303,4 +303,21 @@ export const stateAsDateTime = (itemName: ItemNameOrItem, callback?: (value: jav
     callback(dateTime);
   }
   return dateTime;
+}
+
+/**
+ * Set all items to NULL for a given thing and its channels
+ * @param thing 
+ */
+ export const clearAllLinkedThingItems = (thing: org.openhab.core.thing.Thing) => {
+  const itemChannelLinkRegistry = getItemChannelLinkRegistry();
+  Java.from(thing.getChannels()).forEach(channel => {
+    const linkedItems = fromSet(itemChannelLinkRegistry.getLinkedItems(channel.getUID()));
+    linkedItems.forEach(item => {
+      if (item.getState() !== UNDEF && item.getState() !== NULL) {
+        logger.info("     -xxx-->" + item.getName() + "-" + item.getState());
+        postUpdate(item.getName(), NULL);
+      }
+    });
+  });
 }

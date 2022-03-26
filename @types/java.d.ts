@@ -23,6 +23,8 @@ declare namespace java.lang {
     class Object {
         readonly class: Class<any>;
         toString(): string;
+        // equals(obj: Object): boolean
+        // hashCode(): number;
     }
 
     interface Class<T> extends Object {
@@ -781,14 +783,14 @@ declare namespace java.util {
 
     } // end Optional
 
-    class Collections extends java.lang.Object {
+    class Collections<E> extends java.lang.Object {
 
         equals(arg0: any /*java.lang.Object*/): boolean;
         toString(): string;
 
     } // end Collections
 
-    interface Set<E>/* extends Collection<E>*/ {
+    interface Set<E> extends Collection<E> {
 
         // static copyOf<E>( arg0:Collection<E> ):Set<E>;
         // static of<E>(  ):Set<E>;
@@ -826,7 +828,7 @@ declare namespace java.util {
 
     } // end Set
 
-    interface List<E>/* extends Collection<E>*/ {
+    interface List<E> extends Collection<E> {
 
         // static copyOf<E>( arg0:Collection<E> ):List<E>;
         // static of<E>(  ):List<E>;
