@@ -469,8 +469,8 @@ declare namespace org.openhab.core.items {
   } // end StateChangeListener
 
   interface Item2<T extends org.openhab.core.types.State> extends Item {
-    state: T;
-    getState(): T;
+    state: T | org.openhab.core.types.UnDefType;
+    getState(): T | org.openhab.core.types.UnDefType;
   }
 
   interface Item extends org.openhab.core.common.registry.Identifiable<string> {
