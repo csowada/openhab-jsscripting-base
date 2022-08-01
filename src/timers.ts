@@ -78,8 +78,8 @@ const cancelAllTimers = () => {
 const now = () => ZonedDateTime.now();
 
 const midnight = () => {
-  const ChronoField: any = Java.type("java.time.temporal.ChronoField");
-  return now().with(ChronoField.HOUR_OF_DAY, 0)
+  // const ChronoField: any = Java.type("java.time.temporal.ChronoField");
+  return now().withHour(0).withMinute(0).withSecond(0).withNano(0);
 };
 
 export { now, midnight, createTimerMillis, createTimerSeconds, createTimer, cancelAllTimers}
