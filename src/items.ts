@@ -260,7 +260,7 @@ export const stateAsNumber = (itemName: ItemNameOrItem, callback?: (value: numbe
   if (item) {
     let state = item.getState().as(DecimalType);
     if (state instanceof DecimalType) {
-      let v: number = state.toBigDecimal() as any as number;
+      let v: number = Number(state.toBigDecimal() as any as number);
 
       if (callback) {
         callback(v);
