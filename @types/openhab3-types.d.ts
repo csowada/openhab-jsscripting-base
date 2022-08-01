@@ -116,7 +116,7 @@ declare namespace org.openhab.core.library.types {
     readonly class: java.lang.Class<StopMoveType>
   }
 
-    /* enum */interface StopMoveType extends java.lang.Enum<any>, org.openhab.core.types.PrimitiveType, org.openhab.core.types.Command {
+    /* enum */interface StopMoveType extends java.lang.Enum<any>, org.openhab.core.types.PrimitiveType, org.openhab.core.types.State, org.openhab.core.types.Command {
     // STOP:StopMoveType;
     // MOVE:StopMoveType;
   }

@@ -126,7 +126,7 @@ export declare const averageSince: (item: ItemNameOrItem, timestamp: java.time.Z
  *         states could be found or if the default persistence service does not refer to a
  *         {@link QueryablePersistenceService}
  */
-export declare const sumSince: (item: ItemNameOrItem, timestamp: java.time.ZonedDateTime) => org.openhab.core.library.types.DecimalType | null;
+export declare const sumSince: (item: ItemNameOrItem, timestamp: java.time.ZonedDateTime) => org.openhab.core.library.types.DecimalType;
 /**
  * Query the last update time of a given <code>item</code>. The default persistence service is used.
  *

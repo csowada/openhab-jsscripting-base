@@ -781,6 +781,8 @@ declare namespace org.openhab.core.thing {
     /** ThingStatus - Gets the status of a thing. */
     getStatus(): ThingStatus;
 
+    getStatusInfo(): ThingStatusInfo
+
     /** Returns information whether the Thing is enabled or not. */
     isEnabled(): boolean;
   }
