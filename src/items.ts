@@ -315,7 +315,7 @@ export const stateAsDateTime = (itemName: ItemNameOrItem, callback?: (value: jav
     const linkedItems = fromSet(itemChannelLinkRegistry.getLinkedItems(channel.getUID()));
     linkedItems.forEach(item => {
       if (item.getState() !== UNDEF && item.getState() !== NULL) {
-        logger.info("     -xxx-->" + item.getName() + "-" + item.getState());
+        // logger.info("     -xxx-->" + item.getName() + "-" + item.getState());
         postUpdate(item.getName(), NULL);
       }
     });
