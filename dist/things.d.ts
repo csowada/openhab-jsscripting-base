@@ -9,6 +9,13 @@ export declare const getThingStatusInfo: (thingUid: string) => org.openhab.core.
  * @returns
  */
 export declare const getThingRegistry: () => org.openhab.core.thing.ThingRegistry;
+export declare const getThingManager: () => any;
+/**
+ * Enable/Disable a thing
+ * @param thingId Thing Id
+ * @param enable ``true`` to enable, or ``false`` to disable
+ */
+export declare const enableThing: (thingId: string, enable: boolean) => void;
 /**
  *
  * @returns

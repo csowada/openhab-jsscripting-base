@@ -7,3 +7,4 @@ export declare const fromSet: <T>(set: java.util.Set<T>) => T[];
 export declare const toMap: (values: {
     [key: string]: string;
 }) => java.util.Map<string, string>;
+export declare const convertJsDateToLocalDateTime: (s: Date) => java.time.LocalDateTime;

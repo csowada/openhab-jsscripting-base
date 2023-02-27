@@ -1,3 +1,5 @@
+import { LocalDateTime } from "./openhab-types";
+
 /**
  * Convert an array to a ``java.util.Set<>``
  * @param values 
@@ -26,3 +28,5 @@ export const toMap = (values: {[key:string]:string}) => {
   // values.forEach(x => set.put());
   return map;
 }
+
+export const convertJsDateToLocalDateTime = (s: Date) => LocalDateTime.of(s.getFullYear(), s.getMonth()+1, s.getDate(), s.getHours(), s.getMinutes(), s.getSeconds(), s.getMilliseconds())

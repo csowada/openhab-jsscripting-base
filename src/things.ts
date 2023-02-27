@@ -24,6 +24,24 @@ export const getThingRegistry = (): org.openhab.core.thing.ThingRegistry => {
   return bundleContext.getService(ref);
 }
 
+export const getThingManager = (): any => {
+  const ref = bundleContext.getServiceReference("org.openhab.core.thing.ThingManager");
+  return bundleContext.getService(ref);
+}
+
+/**
+ * Enable/Disable a thing
+ * @param thingId Thing Id
+ * @param enable ``true`` to enable, or ``false`` to disable
+ */
+export const enableThing = (thingId: string, enable: boolean) => {
+  
+  const ThingUID: any = Java.type("org.openhab.core.thing.ThingUID");
+  const tid = new ThingUID(thingId) as org.openhab.core.thing.ThingUID;
+
+  getThingManager().setEnabled(tid, enable);
+}
+
 /**
  * 
  * @returns 
