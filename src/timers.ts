@@ -1,85 +1,101 @@
-import javascriptUtils from "@runtime/JavaScriptUtils";
+// import javascriptUtils from "@runtime/JavaScriptUtils";
 import { ZonedDateTime } from "./openhab-types";
 
-const timerFactory: any = javascriptUtils.timerFactory;
+// const timerFactory: any = javascriptUtils.timerFactory;
 
-export interface Timer {
+// interface Timer {
 
-  /**
-   * Cancels the timer
-   */
-  cancel(): boolean
+//   /**
+//    * Cancels the timer
+//    */
+//   cancel(): boolean
 
-  /**
-   * Determines whether the scheduled execution has already terminated.
-   */
+//   /**
+//    * Determines whether the scheduled execution has already terminated.
+//    */
 
-  hasTerminated(): boolean
+//   hasTerminated(): boolean
 
-  /**
-   *  Determines whether the scheduled execution is yet to happen.
-   */
-  isActive(): boolean
+//   /**
+//    *  Determines whether the scheduled execution is yet to happen.
+//    */
+//   isActive(): boolean
 
-  /**
-   * Determines whether the scheduled code is currently executed.
-   */
-  isRunning(): boolean
+//   /**
+//    * Determines whether the scheduled code is currently executed.
+//    */
+//   isRunning(): boolean
 
-  /**
-   * Reschedules a timer to a new starting time.
-   */
-  reschedule(newTime: java.time.ZonedDateTime): boolean
-}
+//   /**
+//    * Reschedules a timer to a new starting time.
+//    */
+//   reschedule(newTime: java.time.ZonedDateTime): boolean
+// }
+
+// export class TimerControl {
+
+//   private timers: Set<Timer> = new Set();;
+
+
+
+
+
+//   /**
+//    * Cancel one timer
+//    * @param timer 
+//    */
+//   cancel = (timer: Timer) => {
+//     timer.cancel();
+//     this.timers.delete(timer);
+//   }
+
+//   /**
+//    * Cancel all pending timers
+//    */
+//   cancelAllTimers = () => {
+//     if (this.timers != null) {
+//       this.timers.forEach(t => t.cancel());
+//       this.timers.clear();
+//     }
+//   }
+// }
 
 /**
- * 
- * @param seconds 
- * @param fn 
- * @returns 
- */
-const createTimerSeconds = (seconds: number, fn: () => void): Timer => {
-  return timerFactory.createTimer(ZonedDateTime.now().plusSeconds(seconds), fn);
-}
-
-/**
- * 
+ * Create a Timer based on millliseconds
  * @param millis 
  * @param fn 
  * @returns 
  */
-const createTimerMillis = (millis: number, fn: () => void): Timer => {
-  return timerFactory.createTimer(ZonedDateTime.now().plusNanos(millis * 1000000), fn);
+const createTimerMillis = (millis: number, fn: () => void): number => {
+  return setTimeout(fn, millis);
 }
 
 /**
- * 
- * @param time 
+ * Create a Timer based on seconds
+ * @param seconds 
  * @param fn 
  * @returns 
  */
-const createTimer = (time: java.time.ZonedDateTime, fn: () => void): Timer => {
-  const timer: Timer = timerFactory.createTimer(time, fn);
-  return timer;
-}
-
-/**
- * Cancel all running timers of the global instance (per rule)
- */
-const cancelAllTimers = () => {
-  if (timerFactory != null) {
-    timerFactory.removeAll();
-  }
+const createTimerSeconds = (seconds: number, fn: () => void): number => {
+  return createTimerMillis(seconds * 1000, fn);
 }
 
 /**
  * Returns a NOW ZonedDateTime object
  */
+
+/**
+ * Returns a NOW ZonedDateTime object
+ * @returns ZonedDateTime object
+ */
 const now = () => ZonedDateTime.now();
 
+/**
+ * Returns midnight
+ * @returns 
+ */
 const midnight = () => {
-  // const ChronoField: any = Java.type("java.time.temporal.ChronoField");
   return now().withHour(0).withMinute(0).withSecond(0).withNano(0);
 };
 
-export { now, midnight, createTimerMillis, createTimerSeconds, createTimer, cancelAllTimers}
+export { now, midnight, createTimerMillis, createTimerSeconds }
