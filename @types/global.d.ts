@@ -26,6 +26,11 @@ declare module '@runtime/RuleSupport' {
     export var TriggerBuilder: any // class java.lang.Class
 }
 
+declare module '@runtime/cache' {
+    export var sharedCache: any
+    export var privateCache : any
+}
+
 /**
  * openHAB 3.x default imports
  */
@@ -90,7 +95,8 @@ declare module '@runtime' {
     export var things: org.openhab.core.thing.ThingRegistry
     export var events: org.openhab.core.automation.module.script.internal.defaultscope.ScriptBusEvent
     export var actions: org.openhab.core.automation.module.script.internal.defaultscope.ScriptThingActions
-
+    export var scriptExtension: any
+    export var se: any
 
     // units
     export var ImperialUnits: any // class java.lang.Class

@@ -88,6 +88,8 @@ export const createRule = (params: ExecuteFnType): org.openhab.core.automation.m
   }
 
   if (typeof params.autoAdd === 'undefined' || params.autoAdd === true) {
+    // logger.warn("Jeha");
+    // return automationManager.addRule(rule);
     automationManager.addRule(rule);
   }
 

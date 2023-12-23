@@ -4,7 +4,7 @@ export * from "./items";
 export * from "./java-utils";
 export * from "./logger";
 export * from "./rules";
-export * from "./timers3";
+export * from "./timers";
 export * from "./triggers";
 export * from "./things";
 export * from "./openhab-types";

@@ -785,6 +785,15 @@ declare namespace org.openhab.core.thing {
 
     /** Returns information whether the Thing is enabled or not. */
     isEnabled(): boolean;
+
+    /** Returns an immutable copy of the Thing properties. */
+    getProperties(): java.util.Map<String,String>;
+  }
+
+  interface Bridge extends Thing {
+    /** Returns the children of the bridge. */
+    // getThings(): java.util.List<Thing>
+    getThings(): Thing[]
   }
 
   /** 
