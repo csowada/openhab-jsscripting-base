@@ -3,7 +3,7 @@ export declare const ItemCommandEvent: org.openhab.core.items.events.ItemCommand
 export declare const GroupItemStateChangedEvent: org.openhab.core.items.events.GroupItemStateChangedEvent;
 export declare const ItemEvent: org.openhab.core.items.events.ItemEvent;
 export declare const ItemUpdatedEvent: org.openhab.core.items.events.ItemUpdatedEvent;
-export declare const ItemStateEvent: org.openhab.core.items.events.ItemStateEvent;
+export declare const ItemStateUpdatedEvent: org.openhab.core.items.events.ItemStateUpdatedEvent;
 export declare const ThingStatusInfoChangedEvent: org.openhab.core.thing.events.ThingStatusInfoChangedEvent;
 interface SimpleRuleStatic {
     readonly class: any;

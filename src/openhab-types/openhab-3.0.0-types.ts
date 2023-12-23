@@ -14,7 +14,7 @@ export const ItemCommandEvent: org.openhab.core.items.events.ItemCommandEvent = 
 export const GroupItemStateChangedEvent: org.openhab.core.items.events.GroupItemStateChangedEvent = Java.type("org.openhab.core.items.events.GroupItemStateChangedEvent");
 export const ItemEvent: org.openhab.core.items.events.ItemEvent = Java.type("org.openhab.core.items.events.ItemEvent");
 export const ItemUpdatedEvent: org.openhab.core.items.events.ItemUpdatedEvent = Java.type("org.openhab.core.items.events.ItemUpdatedEvent");
-export const ItemStateEvent: org.openhab.core.items.events.ItemStateEvent = Java.type("org.openhab.core.items.events.ItemStateEvent");
+export const ItemStateUpdatedEvent: org.openhab.core.items.events.ItemStateUpdatedEvent = Java.type("org.openhab.core.items.events.ItemStateUpdatedEvent");
 export const ThingStatusInfoChangedEvent: org.openhab.core.thing.events.ThingStatusInfoChangedEvent = Java.type("org.openhab.core.thing.events.ThingStatusInfoChangedEvent");
 
 interface SimpleRuleStatic {

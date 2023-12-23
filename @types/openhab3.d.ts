@@ -616,7 +616,7 @@ declare namespace org.openhab.core.items.events {
 
   } // end ItemEvent
 
-  class ItemStateEvent extends org.openhab.core.events.AbstractEvent {
+  class ItemStateUpdatedEvent extends org.openhab.core.events.AbstractEvent {
 
     getItemState(): org.openhab.core.types.State;
     getType(): string;

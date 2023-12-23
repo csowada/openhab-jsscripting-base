@@ -9,14 +9,14 @@
  */
 //// <reference path="openhab-3.0.0.d.ts"/>
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ConditionBuilder = exports.ActionBuilder = exports.ModuleBuilder = exports.TriggerBuilder = exports.Configuration = exports.SimpleRule = exports.ThingStatusInfoChangedEvent = exports.ItemStateEvent = exports.ItemUpdatedEvent = exports.ItemEvent = exports.GroupItemStateChangedEvent = exports.ItemCommandEvent = exports.ItemStateChangedEvent = void 0;
+exports.ConditionBuilder = exports.ActionBuilder = exports.ModuleBuilder = exports.TriggerBuilder = exports.Configuration = exports.SimpleRule = exports.ThingStatusInfoChangedEvent = exports.ItemStateUpdatedEvent = exports.ItemUpdatedEvent = exports.ItemEvent = exports.GroupItemStateChangedEvent = exports.ItemCommandEvent = exports.ItemStateChangedEvent = void 0;
 // events
 exports.ItemStateChangedEvent = Java.type("org.openhab.core.items.events.ItemStateChangedEvent");
 exports.ItemCommandEvent = Java.type("org.openhab.core.items.events.ItemCommandEvent");
 exports.GroupItemStateChangedEvent = Java.type("org.openhab.core.items.events.GroupItemStateChangedEvent");
 exports.ItemEvent = Java.type("org.openhab.core.items.events.ItemEvent");
 exports.ItemUpdatedEvent = Java.type("org.openhab.core.items.events.ItemUpdatedEvent");
-exports.ItemStateEvent = Java.type("org.openhab.core.items.events.ItemStateEvent");
+exports.ItemStateUpdatedEvent = Java.type("org.openhab.core.items.events.ItemStateUpdatedEvent");
 exports.ThingStatusInfoChangedEvent = Java.type("org.openhab.core.thing.events.ThingStatusInfoChangedEvent");
 exports.SimpleRule = Java.type("org.openhab.core.automation.module.script.rulesupport.shared.simple.SimpleRule");
 exports.Configuration = Java.type("org.openhab.core.config.core.Configuration");

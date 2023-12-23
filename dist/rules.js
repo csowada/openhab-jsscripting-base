@@ -73,7 +73,7 @@ const extractTriggeringItemName = (input) => {
     let result = callTypEquals(input, openhab_types_1.ItemStateChangedEvent, (y) => y.getItemName());
     if (result)
         return result;
-    result = callTypEquals(input, openhab_types_1.ItemStateEvent, (y) => y.getItemName());
+    result = callTypEquals(input, openhab_types_1.ItemStateUpdatedEvent, (y) => y.getItemName());
     if (result)
         return result;
     result = callTypEquals(input, openhab_types_1.GroupItemStateChangedEvent, (y) => y.getItemName());
@@ -88,7 +88,7 @@ const extractNewState = (input) => {
     let result = callTypEquals(input, openhab_types_1.ItemStateChangedEvent, (y) => y.getItemState());
     if (result)
         return result;
-    result = callTypEquals(input, openhab_types_1.ItemStateEvent, (y) => y.getItemState());
+    result = callTypEquals(input, openhab_types_1.ItemStateUpdatedEvent, (y) => y.getItemState());
     if (result)
         return result;
     result = callTypEquals(input, openhab_types_1.GroupItemStateChangedEvent, (y) => y.getItemState());

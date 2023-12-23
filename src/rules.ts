@@ -1,5 +1,5 @@
 import { automationManager } from "@runtime/RuleSupport";
-import { ItemStateChangedEvent, ItemStateEvent, GroupItemStateChangedEvent, ItemCommandEvent, ThingStatusInfoChangedEvent } from "./openhab-types";
+import { ItemStateChangedEvent, ItemStateUpdatedEvent, GroupItemStateChangedEvent, ItemCommandEvent, ThingStatusInfoChangedEvent } from "./openhab-types";
 
 // import { extractNewState, extractPreviousState, extractReceivedCommand, extractTriggeringItemName } from './events';
 import { toSet } from './java-utils';
@@ -118,7 +118,7 @@ const extractTriggeringItemName = (input: { [index: string]: any }) => {
   let result = callTypEquals(input, ItemStateChangedEvent, (y) => y.getItemName());
   if (result) return result;
 
-  result = callTypEquals(input, ItemStateEvent, (y) => y.getItemName());
+  result = callTypEquals(input, ItemStateUpdatedEvent, (y) => y.getItemName());
   if (result) return result;
 
   result = callTypEquals(input, GroupItemStateChangedEvent, (y) => y.getItemName());
@@ -135,7 +135,7 @@ const extractNewState = (input: { [index: string]: any }) => {
   let result = callTypEquals(input, ItemStateChangedEvent, (y) => y.getItemState());
   if (result) return result;
 
-  result = callTypEquals(input, ItemStateEvent, (y) => y.getItemState());
+  result = callTypEquals(input, ItemStateUpdatedEvent, (y) => y.getItemState());
   if (result) return result;
 
   result = callTypEquals(input, GroupItemStateChangedEvent, (y) => y.getItemState());
